@@ -23,7 +23,7 @@ session_start();
 								if(isset($_SESSION['pseudo'])){
 											echo "Bienvenue ".$_SESSION['pseudo']."(".$_SESSION['level'].")";?>
 				<form method="post" action="<?php echo BASE_URL.'/Deconnexion';?>">
-   <input type='submit' value='Se déconnecter'/></form>
+   <input type='submit' class="btn btn-info" value='Se déconnecter'/></form>
 								<?php }
 								else { ?>
 											<li> <a href="<?php echo BASE_URL.'/Connexion';?>">Connexion</a></li> <?php
@@ -62,7 +62,7 @@ session_start();
             </tr>
 							
           </table>        
-        <input type="submit" name="register" value="S'inscrire"/>
+        <input type="submit" class="btn btn-info" name="register" value="S'inscrire"/>
 			<?php InscriptionController::verifChamp()?>
         </form>
 			<hr>
