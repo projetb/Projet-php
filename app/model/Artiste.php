@@ -9,7 +9,7 @@ class Artiste extends Model {
 		return $stmt->execute(array(
 			":id" => $id,
 			":pseudoArtiste"=>$data['pseudoArtiste'],
-			":description"=>$data['description']);
+			":description"=>$data['description']));
 		//return $stmt->fetch();
 	}
 	
