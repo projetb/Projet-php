@@ -43,6 +43,12 @@ class Router {
 				  $result['action'] = "Connexion";
 			  }
 		}
+		if($parts[0] == "Artiste")  {
+			  if (count($parts) == 1){
+				  $result["controller"] = "Artiste";
+				  $result['action'] = "afficherListe";
+			  }
+		}
 	  }
 	  return $result;
    }
