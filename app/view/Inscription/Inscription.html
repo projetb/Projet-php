@@ -14,6 +14,11 @@ session_start();
 					<li> <a href="<?php echo BASE_URL.'/Inscription';?>">Inscription </a></li>
 					<li> <a href="<?php echo BASE_URL.'/Album';?>">Liste des albums</a></li>
 					<li> <a href="<?php echo BASE_URL.'/Artiste';?>">Liste des artistes</a></li>
+					<?php
+					 if(isset($_SESSION['level']) && $_SESSION['level']=='admin'){
+					?>
+					<li> <a href="<?php echo BASE_URL.'/Utilisateur';?>">Membres</a></li>
+					<?php } ?>
 					<li> <?php 
 								if(isset($_SESSION['pseudo'])){
 											echo "Bienvenue ".$_SESSION['pseudo']."(".$_SESSION['level'].")";?>

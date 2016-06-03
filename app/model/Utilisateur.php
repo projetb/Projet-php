@@ -1,10 +1,10 @@
 <?php
 
 class Utilisateur extends Model {
-	public $pseudo,$mdp,$email,$nom,$prenom;
+	public $pseudo,$mdp,$email,$nom,$prenom,$valide;
 	public static function setFromPseudo( $pseudo,$data ) {                                                                                                  
 		$db = Database::getInstance();
-		$sql = "UPDATE Utilisateur set mdp=:mdp,email=:email,nom=nom,prenom=prenom WHERE pseudo = :pseudo";
+		$sql = "UPDATE Utilisateur set mdp=:mdp,email=:email,nom=nom,prenom=prenom,valide=:valide WHERE pseudo = :pseudo";
 		$stmt = $db->prepare($sql);
 		//$stmt->setFetchMode(PDO::FETCH_CLASS, "Contact");
 		return $stmt->execute(array(
@@ -12,6 +12,7 @@ class Utilisateur extends Model {
 			":mdp"=>$data['mdp'],
 			":email"=>$data['email'],
      	":nom"=>$data['nom'],
+			":valide"=>$data['valide'],
 			":prenom"=>$data['prenom']));
 		//return $stmt->fetch();
 	}

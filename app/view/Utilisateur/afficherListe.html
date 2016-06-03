@@ -15,6 +15,11 @@ session_start();
 					<li> <a href="<?php echo BASE_URL.'/Inscription';?>">Inscription </a></li>
 					<li> <a href="<?php echo BASE_URL.'/Album';?>">Liste des albums</a></li>
 					<li> <a href="<?php echo BASE_URL.'/Artiste';?>">Liste des artistes</a></li>
+					<?php
+					 if(isset($_SESSION['level']) && $_SESSION['level']=='admin'){
+					?>
+					<li> <a href="<?php echo BASE_URL.'/Utilisateur';?>">Membres</a></li>
+					<?php } ?>
 					<li> <?php 
 								if(isset($_SESSION['pseudo'])){
 										echo "Bienvenue ".$_SESSION['pseudo']."(".$_SESSION['level'].")";?>
@@ -27,12 +32,12 @@ session_start();
 								?>
 						</li>
 				</ul>
-				<h1>Listes des membres</h1>
+				<h3 class = "muted">Listes des membres</h3>
 			</div>
 			<table class="table table-stripped">
 				<thead>
 					<tr>
-						<th>Pseudo</th><th>Description</th>
+						<th>Pseudo</th><th>E-mail</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -42,13 +47,19 @@ session_start();
 						<td>
 							<?php echo $artiste->pseudo;?>
 						</td>
-						<td><?php echo $artiste->mail;?>
+						<td><?php echo $artiste->email;?>
 						</td>
-						<td><a href='<?php echo BASE_URL."/Artiste/afficher/".$contact->id;?>' 
-								class="btn btn-info"><i class="icon icon-search"><i></a></td>
-							</tr>
+						<td>
+							<form method="post" action="<?php echo BASE_URL.'/Utilisateur';?>">
+   					<input type='submit' class="btn btn-info" value='✕'/>
+						<?php if($artiste->valide==false){ ?>
+						<input type='submit' class="btn btn-info" value='✓'/>
+							</form>
+						
+						</td>
+					</tr>
 							<!--a href="contact/afficher/<?php echo $contact->id;?>"></a></td><td><?php echo $contact->prenom." ".$contact->nom;?></td></tr-->
-					<?php endforeach; }
+					<?php } endforeach; } 
 					else {
 								echo "<h4> Vous devez être connecté en tant qu'ADMIN pour consulter les membres (Redirection) </h4>";
 									header('Refresh: 2;/public/Connexion');
