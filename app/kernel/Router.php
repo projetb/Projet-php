@@ -37,6 +37,12 @@ class Router {
 			  }
 			  //
 		  }
+		if($parts[0] == "Inscription")  {
+			if (count($parts) == 1){
+				$result["controller"] = "Inscription";
+				$result['action'] = "Inscription";
+			}
+		}
 		if($parts[0] == "Connexion")  {
 			  if (count($parts) == 1){
 				  $result["controller"] = "Connexion";
