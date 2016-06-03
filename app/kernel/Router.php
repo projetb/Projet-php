@@ -13,7 +13,7 @@ class Router {
 		  $parts = explode("/", $query);
 		  if($parts[0] == "Album")  {
 			  if (count($parts) == 1){
-				  $result["controller"] = "Contact";
+				  $result["controller"] = "Album";
 				  $result['action'] = "afficherListe";
 			  }
 			  if ((count($parts) == 2) && ($parts[1] == "afficher")){
@@ -24,25 +24,25 @@ class Router {
 			  if ( (count($parts) == 3) 
 				  && ($parts[1] == "afficher")
 				  && ($parts[0] == "Album")){
-					  $result["controller"] = "Contact";
-					  $result["action"] = "afficherContact";
+					  $result["controller"] = "Album";
+					  $result["action"] = "afficherAlbum";
 					  $result["params"]["id"] = $parts[2];            
 				  }
 			  //
 			  if ((count($parts) == 3) && ($parts[1] == "modifier")){
-				  $result["controller"] = "Contact";
-				  $result["action"] = "modifierContact";
+				  $result["controller"] = "Album";
+				  $result["action"] = "modifierAlbum";
 				  $result["params"]["id"]= $parts[2];
 				  $result["params"]["post"]= $_POST;
 			  }
 			  //
 		  }
-			if($parts[0] == "Connexion")  {
-					if (count($parts) == 1){
-						$result["controller"] = "Connexion";
-						$result['action'] = "Connexion";
-					}
-			}
+		if($parts[0] == "Connexion")  {
+			  if (count($parts) == 1){
+				  $result["controller"] = "Connexion";
+				  $result['action'] = "Connexion";
+			  }
+		}
 	  }
 	  return $result;
    }
