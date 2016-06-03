@@ -29,12 +29,11 @@ class ConnexionController extends Controller {
         FROM Administrateur WHERE pseudo=:pseudo');
         $requete->bindValue(':pseudo',$login, PDO::PARAM_STR);
         $requete->execute();
-        $droit=$query->fetch();
+        $droit=$requete->fetch();
 			if ($droit['idAdmin']>0){
-				echo " Vous etes admin";
 				$_SESSION['level'] ='admin';
 				$_SESSION['pseudo'] = $data['pseudo'];
-	   		$message = "<p>Bienvenue ".$data['pseudo'].", 
+	   		$message = "<p>Bienvenue ".$data['pseudo']."(".$_SESSION['level']."), 
 				Redirection vers les albums ..</p>";  
 				header('Refresh: 2;/public/Album');
 			}
@@ -45,7 +44,7 @@ class ConnexionController extends Controller {
 		else {
 			 $_SESSION['pseudo'] = $data['pseudo'];
 			$_SESSION['level'] ='user';
-	    $message = "<p>Bienvenue ".$data['pseudo'].", 
+	    $message = "<p>Bienvenue ".$data['pseudo']."(".$_SESSION['level']."), 
 			Redirection vers les albums ..</p>";  
 		header('Refresh: 2;/public/Album');
 		}

@@ -16,7 +16,7 @@ session_start();
 					<li> <a href="<?php echo BASE_URL.'/Artiste';?>">Liste des artistes</a></li>
 					<li> <?php 
 								if(isset($_SESSION['pseudo'])){
-											echo "Bienvenue ".$_SESSION['pseudo']; ?>
+											echo "Bienvenue ".$_SESSION['pseudo']."(".$_SESSION['level'].")";?>
 				<form method="post" action="<?php echo BASE_URL.'/Deconnexion';?>">
    <input type='submit' value='Se déconnecter'/></form>
 								<?php }
