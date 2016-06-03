@@ -1,0 +1,66 @@
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+	<head>
+		<meta charset="utf-8"/>
+	<link href="<?php echo BASE_URL.'/css/bootstrap.css';?>" rel="stylesheet" />
+
+		<title>Membres</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="page-header">
+				<ul class="nav nav-pills pull-right">
+					<li> <a href="<?php echo BASE_URL.'/Inscription';?>">Inscription </a></li>
+					<li> <a href="<?php echo BASE_URL.'/Album';?>">Liste des albums</a></li>
+					<li> <a href="<?php echo BASE_URL.'/Artiste';?>">Liste des artistes</a></li>
+					<li> <?php 
+								if(isset($_SESSION['pseudo'])){
+										echo "Bienvenue ".$_SESSION['pseudo']."(".$_SESSION['level'].")";?>
+				<form method="post" action="<?php echo BASE_URL.'/Deconnexion';?>">
+   <input type='submit' value='Se déconnecter'/></form>
+								<?php }
+								else { ?>
+											<li> <a href="<?php echo BASE_URL.'/Connexion';?>">Connexion</a></li> <?php
+								}
+								?>
+						</li>
+				</ul>
+				<h1>Listes des membres</h1>
+			</div>
+			<table class="table table-stripped">
+				<thead>
+					<tr>
+						<th>Pseudo</th><th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php  if (isset($_SESSION['pseudo']) && $_SESSION['level']=='admin'){
+						foreach($this->list as $artiste) : ?>
+					<tr>
+						<td>
+							<?php echo $artiste->pseudo;?>
+						</td>
+						<td><?php echo $artiste->mail;?>
+						</td>
+						<td><a href='<?php echo BASE_URL."/Artiste/afficher/".$contact->id;?>' 
+								class="btn btn-info"><i class="icon icon-search"><i></a></td>
+							</tr>
+							<!--a href="contact/afficher/<?php echo $contact->id;?>"></a></td><td><?php echo $contact->prenom." ".$contact->nom;?></td></tr-->
+					<?php endforeach; }
+					else {
+								echo "<h4> Vous devez être connecté en tant qu'ADMIN pour consulter les membres (Redirection) </h4>";
+									header('Refresh: 2;/public/Connexion');
+						}?>
+				</tbody>
+			</table>
+			<footer>
+				<hr>
+				<div class="text-center">
+					<a href="<?php echo BASE_URL;?>">page d'accueil</a>
+				</div>
+			</footer>
+		</div>
+	</body>
+</html>

@@ -58,6 +58,12 @@ class Router {
 				  $result['action'] = "afficherListe";
 			  }
 		}
+		if($parts[0] == "Utilisateur")  {
+			  if (count($parts) == 1){
+				  $result["controller"] = "Utilisateur";
+				  $result['action'] = "afficherListe";
+			  }
+		}
 		if($parts[0] == "Deconnexion")  {
 			  if (count($parts) == 1){
 				  $result["controller"] = "Deconnexion";
