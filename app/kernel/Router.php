@@ -11,7 +11,7 @@ class Router {
 		 $result["action"] = "index";
       } else {
 		  $parts = explode("/", $query);
-		  if($parts[0] == "contact")  {
+		  if($parts[0] == "Album")  {
 			  if (count($parts) == 1){
 				  $result["controller"] = "Contact";
 				  $result['action'] = "afficherListe";
@@ -23,7 +23,7 @@ class Router {
 			  }
 			  if ( (count($parts) == 3) 
 				  && ($parts[1] == "afficher")
-				  && ($parts[0] == "contact")){
+				  && ($parts[0] == "Album")){
 					  $result["controller"] = "Contact";
 					  $result["action"] = "afficherContact";
 					  $result["params"]["id"] = $parts[2];            
@@ -37,6 +37,12 @@ class Router {
 			  }
 			  //
 		  }
+			if($parts[0] == "Connexion")  {
+					if (count($parts) == 1){
+						$result["controller"] = "Connexion";
+						$result['action'] = "Connexion";
+					}
+			}
 	  }
 	  return $result;
    }
