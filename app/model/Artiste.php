@@ -1,4 +1,5 @@
 <?php
+
 class Artiste extends Model {
 	public $idArtiste, $pseudoArtiste, $description;
 	public static function setFromId( $id ,$data) {                                                                                                  
@@ -21,6 +22,7 @@ class Artiste extends Model {
 		$stmt->execute(array(":id" => $id));
 		return $stmt->fetch();
 	}
+
 	public static function getList() {
 		$db = Database::getInstance();
 		$sql = "SELECT * FROM Artiste";

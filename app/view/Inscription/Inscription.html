@@ -1,5 +1,7 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
-<<<<<<< Updated upstream
 	<head>
 		<link href="<?php echo BASE_URL.'/css/bootstrap.css';?>" rel="stylesheet" />
 		<meta charset="utf-8"/>
@@ -10,68 +12,34 @@
 			<div class="page-header">
 				<ul class="nav nav-pills pull-right">
 					<li> <a href="<?php echo BASE_URL.'/Inscription';?>">Inscription </a></li>
-					<li> <a href="<?php echo BASE_URL.'/Connexion';?>">Connexion</a></li>
 					<li> <a href="<?php echo BASE_URL.'/Album';?>">Liste des albums</a></li>
 					<li> <a href="<?php echo BASE_URL.'/Artiste';?>">Liste des artistes</a></li>
-					<li> <a href="#">A propos</a></li>
+					<li> <?php 
+								if(isset($_SESSION['pseudo'])){
+											echo "Bienvenue ".$_SESSION['pseudo']; ?>
+				<form method="post" action="<?php echo BASE_URL.'/Deconnexion';?>">
+   <input type='submit' value='Se déconnecter'/></form>
+								<?php }
+								else { ?>
+											<li> <a href="<?php echo BASE_URL.'/Connexion';?>">Connexion</a></li> <?php
+								}
+								?>
+						</li>
 				</ul>
 				<h3 class="muted">Inscription
 			</h3>
 		</div>
 		<p class="lead">Inscription:
-		</p><form action="<?php echo BASE_URL;?>" method="post">     
-            <table>            
-            <tr>            
-            <td><label for="login"><strong>Nom de compte :</strong></label></td>
-            <td><input type="text" name="login" id="login"/></td>            
-            </tr>            
-            <tr>            
-            <td><label for="pass"><strong>Mot de passe :</strong></label></td>
-            <td><input type="password" name="pass" id="pass"/></td>          
-            </tr>           
-            <tr>          
-            <td><label for="pass2"><strong>Confirmez le mot de passe :</strong></label></td>
-            <td><input type="password" name="pass2" id="pass2"/></td>
-          </table>        
-        <input type="submit" name="register" value="S'inscrire"/>
-        </form>
-			<hr>
-			<div class="text-center">
-				<a href="<?php echo BASE_URL;?>">page d'accueil</a>
-			</div>
-	</div>
-</body>
-</html>
-=======
-  <head>
-    <link href="<?php echo BASE_URL.'/css/bootstrap.css';?>" rel="stylesheet" />
-    <meta charset="utf-8"/>
-    <title>Inscription</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="page-header">
-        <ul class="nav nav-pills pull-right">
-          <li> <a href="<?php echo BASE_URL.'/Inscription';?>">Inscription </a></li>
-          <li> <a href="<?php echo BASE_URL.'/Connexion';?>">Connexion</a></li>
-          <li> <a href="<?php echo BASE_URL.'/Album';?>">Liste des albums</a></li>
-          <li> <a href="<?php echo BASE_URL.'/Artiste';?>">Liste des artistes</a></li>
-          <li> <a href="#">A propos</a></li>
-        </ul>
-        <h3 class="muted">Inscription
-      </h3>
-    </div>
-    <p class="lead">Inscription:
-    </p><form action="<?php echo BASE_URL.'/Inscription';?>" method="post">     
+		</p><form action="<?php echo BASE_URL.'/Inscription';?>" method="post">     
             <table>            
             <tr>            
             <td><label for="login"><strong>Pseudo :</strong></label></td>
             <td><input type="text" name="login" id="login"/></td>            
             </tr> 
-              <tr>            
+	            <tr>            
             <td><label for="login"><strong>Email :</strong></label></td>
             <td><input type="email" name="mail" id="mail"/></td>            
-            </tr>           
+            </tr>						
             <tr>            
             <td><label for="pass"><strong>Mot de passe :</strong></label></td>
             <td><input type="password" name="pass" id="pass"/></td>          
@@ -87,16 +55,15 @@
             <td><label for="login"><strong>Prenom :</strong></label></td>
             <td><input type="text" name="name" id="name"/></td>            
             </tr>
-              
+							
           </table>        
         <input type="submit" name="register" value="S'inscrire"/>
-      <?php InscriptionController::verifChamp()?>
+			<?php InscriptionController::verifChamp()?>
         </form>
-      <hr>
-      <div class="text-center">
-        <a href="<?php echo BASE_URL;?>">page d'accueil</a>
-      </div>
-  </div>
+			<hr>
+			<div class="text-center">
+				<a href="<?php echo BASE_URL;?>">page d'accueil</a>
+			</div>
+	</div>
 </body>
 </html>
->>>>>>> Stashed changes

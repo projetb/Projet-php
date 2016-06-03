@@ -1,4 +1,5 @@
 <?php
+
 class Utilisateur extends Model {
 	public $pseudo,$mdp,$email,$nom,$prenom;
 	public static function setFromPseudo( $pseudo,$data ) {                                                                                                  
@@ -26,6 +27,7 @@ class Utilisateur extends Model {
 		$stmt->execute(array(":pseudo" => $pseudo));
 		return $stmt->fetch();
 	}
+
 	public static function getList() {
 		$db = Database::getInstance();
 		$sql = "SELECT * FROM Utilisateur";
@@ -35,3 +37,5 @@ class Utilisateur extends Model {
 	}
 }
 ?>
+
+

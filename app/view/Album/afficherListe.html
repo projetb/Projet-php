@@ -1,14 +1,32 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
-<html> <!-- J'ai modfier afficherListe pour tester aec album-->'
+<html> <!-- J'ai modfier afficherListe pour tester aec album-->
 	<head>
 		<meta charset="utf-8"/>
 	<link href="<?php echo BASE_URL.'/css/bootstrap.css';?>" rel="stylesheet" />
-
 		<title>Albums</title>
 	</head>
 	<body>
 		<div class="container">
 			<div class="page-header">
+				<ul class="nav nav-pills pull-right">
+					<li> <a href="<?php echo BASE_URL.'/Inscription';?>">Inscription </a></li>
+					<li> <a href="<?php echo BASE_URL.'/Album';?>">Liste des albums</a></li>
+					<li> <a href="<?php echo BASE_URL.'/Artiste';?>">Liste des artistes</a></li>
+					<li> <?php 
+								if(isset($_SESSION['pseudo'])){
+											echo "Bienvenue ".$_SESSION['pseudo']; ?>
+				<form method="post" action="<?php echo BASE_URL.'/Deconnexion';?>">
+   <input type='submit' value='Se déconnecter'/></form>
+								<?php }
+								else { ?>
+											<li> <a href="<?php echo BASE_URL.'/Connexion';?>">Connexion</a></li> <?php
+								}
+								?>
+						</li>
+				</ul>
 				<h1>Listes des albums</h1>
 			</div>
 			<table class="table table-stripped">
@@ -18,7 +36,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach($this->list as $album) : ?>
+					<?php if (isset($_SESSION['pseudo'])){
+   foreach($this->list as $album) : ?>
 					<tr>
 						<td>
 							<?php echo $album->titre;?>
@@ -26,12 +45,16 @@
 						<td><?php echo $album->dateSortie;?>
 						</td>
 						<td><?php echo $album->noteGeneral;?></td>
-						<td><?php echo $album->artiste;?></td>
+						<td><?php echo $album->idArtiste?></td>
 						<td><a href='<?php echo BASE_URL."/Album/afficher/".$contact->id;?>' 
 								class="btn btn-info"><i class="icon icon-search"><i></a></td>
 							</tr>
 							<!--a href="contact/afficher/<?php echo $contact->id;?>"></a></td><td><?php echo $contact->prenom." ".$contact->nom;?></td></tr-->
-					<?php endforeach;?>
+					<?php endforeach; }
+					else {
+echo "<h4> Vous devez être connecté pour consuler les albums (Redirection) </h4>";
+	header('Refresh: 2;/public/Connexion');
+							}?>
 				</tbody>
 			</table>
 			<footer>

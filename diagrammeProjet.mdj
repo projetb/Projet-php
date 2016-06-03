@@ -825,7 +825,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "-noteGeneral: int",
+											"text": "-note: int",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5
 										}
@@ -1989,7 +1989,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "-date: date",
+											"text": "-dateNote: date",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5
 										}
@@ -7520,7 +7520,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFU59GHZDTi+oU="
 							},
-							"name": "noteGeneral",
+							"name": "note",
 							"visibility": "private",
 							"isStatic": false,
 							"isLeaf": false,
@@ -8261,7 +8261,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFU59JAyDU2M98="
 							},
-							"name": "date",
+							"name": "dateNote",
 							"visibility": "private",
 							"isStatic": false,
 							"isLeaf": false,

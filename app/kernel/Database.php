@@ -1,7 +1,9 @@
 	<?php
+
 	class Database {
 		 static protected $_instance = null;
 		 protected $_db;
+
 		 static public function getInstance() {
 				if( is_null(self::$_instance) )
 					 self::$_instance = new Database();
@@ -15,6 +17,7 @@
 		 {
 			 return $this->_db->prepare($sql);
 		 }
+
 		 protected function __construct() {
 				$this->_db = new PDO(
 					 "mysql:host=dwarves.iut-fbleau.fr;dbname=decastro;charset=utf8",

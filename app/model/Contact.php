@@ -1,4 +1,5 @@
 <?php
+
 class Contact extends Model {
 	public $id, $nom, $prenom, $email;
 	public static function setFromId( $id,$data ) {                                                                                                  
@@ -25,6 +26,7 @@ class Contact extends Model {
 		$stmt->execute(array(":id" => $id));
 		return $stmt->fetch();
 	}
+
 	public static function getList() {
 		$db = Database::getInstance();
 		$sql = "SELECT * FROM contacts";
@@ -34,3 +36,5 @@ class Contact extends Model {
 	}
 }
 ?>
+
+

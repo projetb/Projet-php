@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 	<head>
 		<link href="<?php echo BASE_URL.'/css/bootstrap.css';?>" rel="stylesheet" />
@@ -9,16 +12,25 @@
 			<div class="page-header">
 				<ul class="nav nav-pills pull-right">
 					<li> <a href="<?php echo BASE_URL.'/Inscription';?>">Inscription </a></li>
-					<li> <a href="<?php echo BASE_URL.'/Connexion';?>">Connexion</a></li>
 					<li> <a href="<?php echo BASE_URL.'/Album';?>">Liste des albums</a></li>
 					<li> <a href="<?php echo BASE_URL.'/Artiste';?>">Liste des artistes</a></li>
-					<li> <a href="#">A propos</a></li>
+					<li> <?php 
+								if(isset($_SESSION['pseudo'])){
+											echo "Bienvenue ".$_SESSION['pseudo']; ?>
+				<form method="post" action="<?php echo BASE_URL.'/Deconnexion';?>">
+   <input type='submit' value='Se déconnecter'/></form>
+								<?php }
+								else { ?>
+											<li> <a href="<?php echo BASE_URL.'/Connexion';?>">Connexion</a></li> <?php
+								}
+								?>
+						</li>
 				</ul>
 				<h3 class="muted">Connexion
 			</h3>
 		</div>
 		<p class="lead">Connexion:
-		</p><form action="<?php echo BASE_URL;?>" method="get">     
+		</p><form action="<?php echo BASE_URL.'/Connexion';?>" method="post">   
             <table>            
             <tr>            
             <td><label for="login"><strong>Nom de compte :</strong></label></td>
@@ -31,6 +43,7 @@
             <tr>          
           </table>        
         <input type="submit" name="connexion" value="Connexion"/>
+				<?php ConnexionController::seConnecter()?>
         </form>
 			<hr>
 			<div class="text-center">

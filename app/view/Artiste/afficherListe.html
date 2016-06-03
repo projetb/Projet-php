@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 	<head>
 		<meta charset="utf-8"/>
@@ -8,6 +11,22 @@
 	<body>
 		<div class="container">
 			<div class="page-header">
+				<ul class="nav nav-pills pull-right">
+					<li> <a href="<?php echo BASE_URL.'/Inscription';?>">Inscription </a></li>
+					<li> <a href="<?php echo BASE_URL.'/Album';?>">Liste des albums</a></li>
+					<li> <a href="<?php echo BASE_URL.'/Artiste';?>">Liste des artistes</a></li>
+					<li> <?php 
+								if(isset($_SESSION['pseudo'])){
+											echo "Bienvenue ".$_SESSION['pseudo']; ?>
+				<form method="post" action="<?php echo BASE_URL.'/Deconnexion';?>">
+   <input type='submit' value='Se déconnecter'/></form>
+								<?php }
+								else { ?>
+											<li> <a href="<?php echo BASE_URL.'/Connexion';?>">Connexion</a></li> <?php
+								}
+								?>
+						</li>
+				</ul>
 				<h1>Listes des artistes</h1>
 			</div>
 			<table class="table table-stripped">
@@ -17,7 +36,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<?php foreach($this->list as $artiste) : ?>
+					<?php  if (isset($_SESSION['pseudo'])){
+						foreach($this->list as $artiste) : ?>
 					<tr>
 						<td>
 							<?php echo $artiste->pseudoArtiste;?>
@@ -28,7 +48,11 @@
 								class="btn btn-info"><i class="icon icon-search"><i></a></td>
 							</tr>
 							<!--a href="contact/afficher/<?php echo $contact->id;?>"></a></td><td><?php echo $contact->prenom." ".$contact->nom;?></td></tr-->
-					<?php endforeach;?>
+					<?php endforeach; }
+					else {
+								echo "<h4> Vous devez être connecté pour consuler les artistes (Redirection) </h4>";
+									header('Refresh: 2;/public/Connexion');
+						}?>
 				</tbody>
 			</table>
 			<footer>

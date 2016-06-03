@@ -1,13 +1,5 @@
-<<<<<<< Updated upstream
 <?php
-class InscriptionController extends Controller {
-   
-   public function Inscription() {
-      $this->view->display();
-   }
-}
-=======
-<?php
+
 class InscriptionController extends Controller {
    
    public function Inscription() {
@@ -16,17 +8,25 @@ class InscriptionController extends Controller {
   public function verifChamp(){
      extract($_POST);
       if(isset($login) && isset($pass) && isset($pass2) && isset($mail) && isset($fname) && isset($name)) {
+				echo "<br>";
         if ($login=="" || $pass=="" || $pass2=="" || $mail=="" || $fname=="" || $name==""){
                if ($pass!=$pass2){
-                   echo "<br>Mot de passe incorrect.";
+                   echo "Mot de passe incorrect<br>";
                 }
-            echo "<br>Champs incomplets.Veuillez réessayer";
+            echo " Champs incomplets.Veuillez réessayer";
         }
-        else if  ($login!="" || $pass!="" || $mail!="" || $fname!="" || $name!="") {
-             echo "<br>Inscription Réussi.";
-          $db = Database::getInstance();
-		     $sql = "INSERT INTO Utilisateur values(:login,:pass,:mail,:fname,:name)";
-		     $stmt = $db->prepare($sql);
+        else if  ($login!="" && $pass!="" && $mail!="" && $fname!="" && $name!="") {
+		          $db = Database::getInstance();
+						$sql = "select * from Utilisateur where pseudo=:pseudo ";
+						$req = $db->prepare($sql);
+						$req->execute(array(":pseudo"=>$login));
+						$array = $req->fetchALL();
+						$nb = count($array);
+					if ($nb<1){
+					
+       echo "Inscription Réussie!";
+		   $sql = "INSERT INTO Utilisateur values(:login,:pass,:mail,:fname,:name)";
+		   $stmt = $db->prepare($sql);
 		  $stmt->setFetchMode(PDO::FETCH_CLASS, "Utilisateur");
 	  	$stmt->execute(array(":login" => $login,
 			":pass"=>$pass,
@@ -35,8 +35,12 @@ class InscriptionController extends Controller {
 			":name"=>$name));
 	  	return $stmt->fetch();
         }       
+				
+				else {
+					echo "Ce pseudo est déja utilisé..Veuillez en choisir un autre.";
+				}
+				}
       }
   }
 }
 ?>
->>>>>>> Stashed changes

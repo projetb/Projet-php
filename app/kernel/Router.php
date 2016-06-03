@@ -24,12 +24,15 @@ class Router {
 			  if ( (count($parts) == 3) 
 				  && ($parts[1] == "afficher")
 				  && ($parts[0] == "Album")){
+
 					  $result["controller"] = "Album";
 					  $result["action"] = "afficherAlbum";
 					  $result["params"]["id"] = $parts[2];            
 				  }
 			  //
+
 			  if ((count($parts) == 3) && ($parts[1] == "modifier")){
+
 				  $result["controller"] = "Album";
 				  $result["action"] = "modifierAlbum";
 				  $result["params"]["id"]= $parts[2];
@@ -53,6 +56,12 @@ class Router {
 			  if (count($parts) == 1){
 				  $result["controller"] = "Artiste";
 				  $result['action'] = "afficherListe";
+			  }
+		}
+		if($parts[0] == "Deconnexion")  {
+			  if (count($parts) == 1){
+				  $result["controller"] = "Deconnexion";
+				  $result['action'] = "Deconnexion";
 			  }
 		}
 	  }

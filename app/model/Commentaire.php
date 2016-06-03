@@ -1,4 +1,5 @@
 <?php
+
 class Commentaire extends Model {
 	public $idCommentaire, $texte, $dateCom, $visible;
 	public static function setFromId( $id,$data ) {                                                                                                  
@@ -25,6 +26,7 @@ class Commentaire extends Model {
 		$stmt->execute(array(":id" => $id));
 		return $stmt->fetch();
 	}
+
 	public static function getList() {
 		$db = Database::getInstance();
 		$sql = "SELECT * FROM Commentaire";
@@ -34,3 +36,5 @@ class Commentaire extends Model {
 	}
 }
 ?>
+
+

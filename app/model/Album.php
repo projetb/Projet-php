@@ -1,4 +1,5 @@
 <?php
+
 class Album extends Model {
 	public $idAlbum, $titre, $dateSortie, $genre, $noteGeneral,$idArtiste;
 	public static function setFromId( $id,$data ) {                                                                                                  
@@ -15,6 +16,7 @@ class Album extends Model {
       ":noteGeneral"=>$data['noteGeneral']));
 		//return $stmt->fetch();
 	}
+
 	public static function getFromId( $id ) {
 		$db = Database::getInstance();
 		$sql = "SELECT * FROM Album WHERE id = :id";
@@ -23,6 +25,7 @@ class Album extends Model {
 		$stmt->execute(array(":id" => $id));
 		return $stmt->fetch();
 	}
+
 	public static function getList() {
 		$db = Database::getInstance();
 		$sql = "SELECT * FROM Album";
