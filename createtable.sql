@@ -2,7 +2,7 @@ CREATE TABLE Artiste(
     idArtiste INT PRIMARY KEY AUTO_INCREMENT,
     pseudoArtiste VARCHAR(40) NOT NULL,
     description VARCHAR(1000),
-    ajouterPar VARCHAR(40) /*pseudo user*/
+    ajouterPar VARCHAR(40)
 );
 
 CREATE TABLE Album(
@@ -23,7 +23,7 @@ CREATE TABLE Utilisateur(
 );
 
 CREATE TABLE Administrateur(
-    idAdmin INT PRIMARY KEY AUTO_INCREMENT
+    idAdmin INT PRIMARY KEY AUTO_INCREMENT,
     pseudo VARCHAR(40) NOT NULL
 );
 
@@ -31,14 +31,14 @@ CREATE TABLE Note(
     valeur INT NOT NULL,
     dateNote date NOT NULL,
     album INT NOT NULL,
-    pseudo VARCHAR(40) NOT NULL,
+    pseudo VARCHAR(40) NOT NULL
 );
 
 CREATE TABLE Commentaire(
     idCommentaire INT PRIMARY KEY AUTO_INCREMENT,
     texte VARCHAR(500) NOT NULL,
     dateCom DATE NOT NULL,
-    visible BOOLEAN DEFAULT FALSE
+    visible BOOLEAN DEFAULT FALSE,
     album INT NOT NULL,
-    pseudo VARCHAR(40) NOT NULL,
+    pseudo VARCHAR(40) NOT NULL
 );
