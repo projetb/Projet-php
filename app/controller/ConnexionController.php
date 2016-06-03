@@ -22,11 +22,33 @@ class ConnexionController extends Controller {
         $query->bindValue(':pseudo',$login, PDO::PARAM_STR);
         $query->execute();
         $data=$query->fetch();
-	if ($data['mdp'] == ($pass)) {
-	    $_SESSION['pseudo'] = $data['pseudo'];
+	if ($data['mdp'] == ($pass)) { 
+		if(isset($admin) && $admin==true){
+			
+			$requete=$db->prepare('SELECT *
+        FROM Administrateur WHERE pseudo=:pseudo');
+        $requete->bindValue(':pseudo',$login, PDO::PARAM_STR);
+        $requete->execute();
+        $droit=$query->fetch();
+			if ($droit['idAdmin']>0){
+				echo " Vous etes admin";
+				$_SESSION['level'] ='admin';
+				$_SESSION['pseudo'] = $data['pseudo'];
+	   		$message = "<p>Bienvenue ".$data['pseudo'].", 
+				Redirection vers les albums ..</p>";  
+				header('Refresh: 2;/public/Album');
+			}
+			else{
+				echo "Impossible vous n'avez pas de compte ADMIN";
+			}
+		}
+		else {
+			 $_SESSION['pseudo'] = $data['pseudo'];
+			$_SESSION['level'] ='user';
 	    $message = "<p>Bienvenue ".$data['pseudo'].", 
 			Redirection vers les albums ..</p>";  
-			header('Refresh: 2;/public/Album');
+		header('Refresh: 2;/public/Album');
+		}
 	}
 	else 
 	{

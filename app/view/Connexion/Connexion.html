@@ -39,9 +39,13 @@ session_start();
             <tr>            
             <td><label for="pass"><strong>Mot de passe :</strong></label></td>
             <td><input type="password" name="pass" id="pass"/></td>          
-            </tr>           
-            <tr>          
-          </table>        
+            </tr> 
+							<tr>
+							<td><label for="admin">Administrateur? </label></td>	
+							<td><input type="checkbox" name="admin" id="admin"/></td>
+								</tr> 
+          </table>
+							
         <input type="submit" name="connexion" value="Connexion"/>
 				<?php ConnexionController::seConnecter()?>
         </form>
