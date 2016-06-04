@@ -1,5 +1,9 @@
 <?php
 session_start();
+extract($_POST);
+	if(isset($accepter)){
+		Utilisateur::valideUser($accepter);
+	}
 ?>
 <!DOCTYPE html>
 	<head>
@@ -50,12 +54,12 @@ session_start();
 						<td><?php echo $artiste->email;?>
 						</td>
 						<td>
-							<form method="post" action="<?php echo BASE_URL.'/Utilisateur';?>">
-   					<input type='submit' class="btn btn-info" value='✕'/>
-						<?php if($artiste->valide==false){ ?>
-						<input type='submit' class="btn btn-info" value='✓'/>
-							</form>
-						
+							<form method="post" name ="accepter" action="<?php echo BASE_URL.'/Utilisateur';?>">
+   								<input type='submit' class="btn btn-info" value='<?php echo $artiste->pseudo;?>'/>
+								</form>
+									<?php if($artiste->valide==false){ ?>
+								<!--	<input type='submit' class="btn btn-info" value='null'/> -->
+							
 						</td>
 					</tr>
 							<!--a href="contact/afficher/<?php echo $contact->id;?>"></a></td><td><?php echo $contact->prenom." ".$contact->nom;?></td></tr-->
