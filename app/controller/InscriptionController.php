@@ -25,14 +25,15 @@ class InscriptionController extends Controller {
 					if ($nb<1){
 					
        echo "Inscription Réussie!";
-		   $sql = "INSERT INTO Utilisateur values(:login,:pass,:mail,:fname,:name)";
+		   $sql = "INSERT INTO Utilisateur values(:login,:pass,:mail,:fname,:name,:valide)";
 		   $stmt = $db->prepare($sql);
 		  $stmt->setFetchMode(PDO::FETCH_CLASS, "Utilisateur");
 	  	$stmt->execute(array(":login" => $login,
 			":pass"=>$pass,
 			":mail"=>$mail,
      	":fname"=>$fname,
-			":name"=>$name));
+			":name"=>$name,
+			":valide"=>false));
 	  	return $stmt->fetch();
         }       
 				
