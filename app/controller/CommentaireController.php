@@ -19,11 +19,16 @@ class CommentaireController extends Controller {
   public function commenter(){
      extract($_POST);
       if(isset($commentaire)) {
-		   $db = Database::getInstance();
-       echo "Message envoyé !";
-		   $sql ="INSERT INTO Commentaire(`texte`, `dateCom`, `album`, `pseudo`) values(:commentaire,NOW(),".$this->commentaire->album.",".$_SESSION['pseudo'].")";
-       $stmt->exec($sql);
-     }
+		   	$db = Database::getInstance();
+       	echo "Message envoyé !";
+		   	$sql = "INSERT INTO Commentaire(`texte`, `dateCom`, `album`, `pseudo`) values(:texte,NOW(),:album,:pseudo)";
+		  	$stmt = $db->prepare($sql);
+		  	$stmt->setFetchMode(PDO::FETCH_CLASS, "Utilisateur");
+	  		$stmt->execute(array(":texte" => $commentaire,
+				":album"=>$this->album->idAlbum,
+				":pseudo"=>$_SESSION['pseudo']));
+	  		return $stmt->fetch();
+        }   
   }
 }
 ?>
