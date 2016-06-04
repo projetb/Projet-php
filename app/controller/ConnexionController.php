@@ -16,14 +16,13 @@ class ConnexionController extends Controller {
     else 
     {
       $db = Database::getInstance();
-        $query=$db->prepare('SELECT mdp,pseudo
+        $query=$db->prepare('SELECT mdp,pseudo,valide
         FROM Utilisateur WHERE pseudo= :pseudo');
         $query->bindValue(':pseudo',$login, PDO::PARAM_STR);
         $query->execute();
         $data=$query->fetch();
 	if ($data['mdp'] == ($pass)) { 
 		if(isset($admin) && $admin==true){
-			
 			$requete=$db->prepare('SELECT *
         FROM Administrateur WHERE pseudo=:pseudo');
         $requete->bindValue(':pseudo',$login, PDO::PARAM_STR);
@@ -40,12 +39,15 @@ class ConnexionController extends Controller {
 				echo "Impossible vous n'avez pas de compte ADMIN";
 			}
 		}
-		else {
+		elseif($data['valide']==true) {
 			 $_SESSION['pseudo'] = $data['pseudo'];
 			$_SESSION['level'] ='user';
 	    $message = "<p>Bienvenue ".$data['pseudo']."(".$_SESSION['level']."), 
 			Redirection vers les albums ..</p>";  
 		header('Refresh: 2;/public/Album');
+		}
+		else {
+			echo "<br>Votre compte n'est pas encore validé.";
 		}
 	}
 	else 
