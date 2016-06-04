@@ -54,11 +54,11 @@ session_start();
 			<table class="table table-stripped">
 				<tbody>
 					<?php if (isset($_SESSION['pseudo'])){
-   foreach($this->list as $commentaire) : ?>
+   foreach(array_reverse($this->list) as $commentaire) : ?>
 					<?php if ($commentaire->album==$this->album->idAlbum){ ?>
 					<tr>
 						<td><?php echo "<p class="."'commEcrit'".">".($commentaire->texte)."</p>"."<li id="."'commEcrit'".">Ecrit par ".($commentaire->pseudo)." le ".($commentaire->dateCom)."</li>";?></td>
-					</tr>
+					</tr>				
 					<?php }
 					endforeach; }
 					else {
