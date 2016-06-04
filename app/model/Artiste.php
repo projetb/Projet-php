@@ -30,5 +30,14 @@ class Artiste extends Model {
 		$stmt->setFetchMode(PDO::FETCH_CLASS, "Artiste");
 		return $stmt->fetchAll();
 	}
+	
+	public static function getNom( $id ){
+		$db = Database::getInstance();
+		$sql = "SELECT * FROM Album natural join Artiste WHERE titre= :id";
+		$stmt = $db->prepare($sql);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, "Artiste");
+		$stmt->execute(array(":id" => $id));
+		return $stmt->fetch();
+	}
 }
 ?>

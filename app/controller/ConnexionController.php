@@ -4,7 +4,6 @@ class ConnexionController extends Controller {
    public function Connexion() {
       $this->view->display();
    }
-
   public function seConnecter(){
     $message='';
     extract($_POST);

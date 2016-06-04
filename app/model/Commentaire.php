@@ -20,7 +20,7 @@ class Commentaire extends Model {
 	}
 	public static function getFromId( $id ) {
 		$db = Database::getInstance();
-		$sql = "SELECT * FROM Commentaire WHERE idCommentaire= :id";
+		$sql = "SELECT * FROM Commentaire WHERE album= :id";
 		$stmt = $db->prepare($sql);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, "Commentaire");
 		$stmt->execute(array(":id" => $id));

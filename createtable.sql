@@ -93,12 +93,9 @@ CREATE TABLE IF NOT EXISTS `Commentaire` (
   `idCommentaire` int(11) NOT NULL AUTO_INCREMENT,
   `texte` varchar(500) NOT NULL,
   `dateCom` date NOT NULL,
-  `visible` tinyint(1) DEFAULT '0',
   `album` int(11) NOT NULL,
   `pseudo` varchar(40) NOT NULL,
-  PRIMARY KEY (`idCommentaire`),
-  UNIQUE KEY `album` (`album`),
-  UNIQUE KEY `pseudo` (`pseudo`)
+  PRIMARY KEY (`idCommentaire`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------

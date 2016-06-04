@@ -14,14 +14,9 @@ session_start();
 					<li> <a href="<?php echo BASE_URL.'/Inscription';?>">Inscription </a></li>
 					<li> <a href="<?php echo BASE_URL.'/Album';?>">Liste des albums</a></li>
 					<li> <a href="<?php echo BASE_URL.'/Artiste';?>">Liste des artistes</a></li>
-					<?php
-					 if(isset($_SESSION['level']) && $_SESSION['level']=='admin'){
-					?>
-					<li> <a href="<?php echo BASE_URL.'/Utilisateur';?>">Membres</a></li>
-					<?php } ?>
 					<li> <?php 
 								if(isset($_SESSION['pseudo'])){
-											echo "Bienvenue ".$_SESSION['pseudo']."(".$_SESSION['level'].")";?>
+											echo "Bienvenue ".$_SESSION['pseudo']; ?>
 				<form method="post" action="<?php echo BASE_URL.'/Deconnexion';?>">
    <input type='submit' value='Se déconnecter'/></form>
 								<?php }
@@ -45,10 +40,10 @@ session_start();
             <td><label for="pass"><strong>Mot de passe :</strong></label></td>
             <td><input type="password" name="pass" id="pass"/></td>          
             </tr> 
-							<tr>
+						<tr>
 							<td><label for="admin">Administrateur? </label></td>	
 							<td><input type="checkbox" name="admin" id="admin"/></td>
-								</tr> 
+						</tr> 
           </table>
 							
         <input type="submit"  class="btn btn-info" name="connexion" value="Connexion"/>

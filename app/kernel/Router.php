@@ -17,7 +17,7 @@ class Router {
 				  $result['action'] = "afficherListe";
 			  }
 			  if ((count($parts) == 2) && ($parts[1] == "afficher")){
-            $result["controller"] = "Index";
+            $result["controller"] = "Commentaire";
             $result["action"] = "afficherListe";
             //$result["params"]["slug"] = $parts[1];            
 			  }
@@ -25,8 +25,8 @@ class Router {
 				  && ($parts[1] == "afficher")
 				  && ($parts[0] == "Album")){
 
-					  $result["controller"] = "Album";
-					  $result["action"] = "afficherAlbum";
+					  $result["controller"] = "Commentaire";
+					  $result["action"] = "afficherListe";
 					  $result["params"]["id"] = $parts[2];            
 				  }
 			  //

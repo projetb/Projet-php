@@ -8,6 +8,19 @@
  * Designed and built with all the love in the world by @mdo and @fat.
  */
 
+.commEcrit{
+  font-size:17px;
+}
+
+#commEcrit{
+  font-size:11px;
+  font-style: italic;
+  list-style-type: none;
+  color: gray;
+}
+
+textarea{ resize:none;}
+
 .clearfix {
   *zoom: 1;
 }
