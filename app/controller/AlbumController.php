@@ -34,7 +34,7 @@ class AlbumController extends Controller {
 						$array = $req->fetchALL();
 						$nb = count($array);
 					if ($nb<1){
-				$this->artiste = Artiste::getNom($artiste);
+				$this->artiste = Artiste::getId($artiste);
        echo "Vous avez ajouter un album!";
 		   $sql = "INSERT INTO Album(`titre`, `dateSortie`, `genre`, `idArtiste`) values(:titre,:date,:genre,:artiste)";
 		   $stmt = $db->prepare($sql);
