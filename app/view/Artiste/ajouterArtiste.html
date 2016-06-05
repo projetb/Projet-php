@@ -1,0 +1,57 @@
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+	<head>
+		<link href="<?php echo BASE_URL.'/css/bootstrap.css';?>" rel="stylesheet" />
+		<meta charset="utf-8"/>
+		<title>Artiste</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="page-header">
+				<ul class="nav nav-pills pull-right">
+					<li> <a href="<?php echo BASE_URL.'/Inscription';?>">Inscription </a></li>
+					<li> <a href="<?php echo BASE_URL.'/Album';?>">Liste des albums</a></li>
+					<li> <a href="<?php echo BASE_URL.'/Artiste';?>">Liste des artistes</a></li>
+					<?php
+					 if(isset($_SESSION['level']) && $_SESSION['level']=='admin'){
+					?>
+					<li> <a href="<?php echo BASE_URL.'/Utilisateur';?>">Membres</a></li>
+					<?php } ?>
+					<li> <?php 
+								if(isset($_SESSION['pseudo'])){
+											echo "Bienvenue ".$_SESSION['pseudo']."(".$_SESSION['level'].")";?>
+				<form method="post" action="<?php echo BASE_URL.'/Deconnexion';?>">
+   <input type='submit' class="btn btn-info" value='Se déconnecter'/></form>
+								<?php }
+								else { ?>
+											<li> <a href="<?php echo BASE_URL.'/Connexion';?>">Connexion</a></li> <?php
+								}
+								?>
+						</li>
+				</ul>
+				<h3 class="muted">Ajouter un Artiste
+			</h3>
+		</div>
+      <form action="<?php echo BASE_URL.'/Artiste/ajouter';?>" method="post">     
+            <table>            
+            <tr>            
+            <td><label for="pseudo"><strong>Pseudo :</strong></label></td>
+            <td><input type="text" name="pseudo" id="pseudo"/></td>            
+            </tr> 
+	            <tr>            
+            <td><label for="description"><strong>Description :</strong></label></td>
+            <td><input type="text" name="description" id="description"/></td>            
+            </tr>						
+          </table>        
+        <input type="submit" class="btn btn-info" name="register" value="Ajouter"/>
+			  <?php ArtisteController::insererArtiste()?>
+        </form>
+			<hr>
+			<div class="text-center">
+				<a href="<?php echo BASE_URL;?>">page d'accueil</a>
+			</div>
+	</div>
+</body>
+</html>

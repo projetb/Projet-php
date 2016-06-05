@@ -34,6 +34,9 @@ session_start();
 				</ul>
 				<h1>Listes des artistes</h1>
 			</div>
+			<form method="post" action="<?php echo BASE_URL.'/Artiste/ajouter';?>">
+				<input type='submit'  class="btn btn-info" value='Cliquez ici pour ajouter un artiste !!!'/>
+			</form>
 			<table class="table table-stripped">
 				<thead>
 					<tr>
@@ -49,7 +52,7 @@ session_start();
 						</td>
 						<td><?php echo $artiste->description;?>
 						</td>
-						<td><a href='<?php echo BASE_URL."/Artiste/afficher/".$contact->id;?>' 
+						<td><a href='<?php echo BASE_URL."/Artiste/afficher/".$artiste->pseudoArtiste;?>' 
 								class="btn btn-info"><i class="icon icon-search"><i></a></td>
 							</tr>
 							<!--a href="contact/afficher/<?php echo $contact->id;?>"></a></td><td><?php echo $contact->prenom." ".$contact->nom;?></td></tr-->

@@ -5,12 +5,48 @@ class ArtisteController extends Controller {
 	public function afficherListe(){
 		$this->view->list = Artiste::getList();
 		$this->view->display(); 
-
 	}
+	
+		public function ajouterArtiste(){
+		$this->view->display(); 
+	}
+	
 	public function afficherArtiste() {
 		$id = $this->route["params"]["id"];
 		$this->view->artiste = Artiste::getFromId($id);
 		$this->view->display();
+	}
+	
+	public function insererArtiste(){
+     extract($_POST);
+      if(isset($pseudo) && isset($description)) {
+				echo "<br>";
+        if ($pseudo=="" || $description==""){
+            echo " Champs incomplets.Veuillez réessayer";
+        }
+        else if  ($pseudo!="" && $description!="") {
+		          $db = Database::getInstance();
+						$sql = "select * from Artiste where pseudoArtiste=:pseudo";
+						$req = $db->prepare($sql);
+						$req->execute(array(":pseudo"=>$pseudo));
+						$array = $req->fetchALL();
+						$nb = count($array);
+					if ($nb<1){
+					
+       echo "Vous avez ajouter un artiste!";
+		   $sql = "INSERT INTO Artiste(`pseudoArtiste`, `description`, `ajouterPar`) values(:pseudo,:description,:user)";
+		   $stmt = $db->prepare($sql);
+		  $stmt->setFetchMode(PDO::FETCH_CLASS, "Artiste");
+	  	$stmt->execute(array(":pseudo" => $pseudo,
+			":description"=>$description,
+			":user"=>$_SESSION['pseudo']));
+	  	return $stmt->fetch();
+        }
+				else {
+					echo "Cet Artiste existe déjà ...";
+				}
+				}
+     }
 	}
 }
 ?>
