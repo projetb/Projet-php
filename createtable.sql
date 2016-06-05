@@ -46,9 +46,7 @@ CREATE TABLE IF NOT EXISTS `Album` (
   `genre` varchar(20) DEFAULT NULL,
   `noteGeneral` int(11) DEFAULT '0',
   `idArtiste` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idAlbum`),
-  UNIQUE KEY `idArtiste` (`idArtiste`),
-  UNIQUE KEY `idArtiste_2` (`idArtiste`)
+  PRIMARY KEY (`idAlbum`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
@@ -56,8 +54,8 @@ CREATE TABLE IF NOT EXISTS `Album` (
 --
 
 INSERT INTO `Album` (`idAlbum`, `titre`, `dateSortie`, `genre`, `noteGeneral`, `idArtiste`) VALUES
-(1, 'Views', '2016-04-29', 'Rap', 0, NULL),
-(2, 'Feu', '2015-12-04', 'Rap', 0, NULL);
+(1, 'Views', '2016-04-29', 'Rap', 0, 1),
+(2, 'Feu', '2015-12-04', 'Rap', 0, 2);
 
 -- --------------------------------------------------------
 
@@ -71,9 +69,7 @@ CREATE TABLE IF NOT EXISTS `Artiste` (
   `description` varchar(1000) DEFAULT NULL,
   `ajouterPar` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`idArtiste`),
-  UNIQUE KEY `pseudoArtiste` (`pseudoArtiste`),
-  UNIQUE KEY `ajouterPar` (`ajouterPar`),
-  UNIQUE KEY `ajouterPar_2` (`ajouterPar`)
+  UNIQUE KEY `pseudoArtiste` (`pseudoArtiste`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
 
 --
@@ -82,7 +78,8 @@ CREATE TABLE IF NOT EXISTS `Artiste` (
 
 INSERT INTO `Artiste` (`idArtiste`, `pseudoArtiste`, `description`, `ajouterPar`) VALUES
 (1, 'Nekfeu', 'Rappeur', 'Maxime');
-
+INSERT INTO `Artiste` (`idArtiste`, `pseudoArtiste`, `description`, `ajouterPar`) VALUES
+(2, 'Drake', 'Rappeur', 'Maxime');
 -- --------------------------------------------------------
 
 --

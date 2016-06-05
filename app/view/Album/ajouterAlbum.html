@@ -1,0 +1,65 @@
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+	<head>
+		<link href="<?php echo BASE_URL.'/css/bootstrap.css';?>" rel="stylesheet" />
+		<meta charset="utf-8"/>
+		<title>Album</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="page-header">
+				<ul class="nav nav-pills pull-right">
+					<li> <a href="<?php echo BASE_URL.'/Inscription';?>">Inscription </a></li>
+					<li> <a href="<?php echo BASE_URL.'/Album';?>">Liste des albums</a></li>
+					<li> <a href="<?php echo BASE_URL.'/Artiste';?>">Liste des artistes</a></li>
+					<?php
+					 if(isset($_SESSION['level']) && $_SESSION['level']=='admin'){
+					?>
+					<li> <a href="<?php echo BASE_URL.'/Utilisateur';?>">Membres</a></li>
+					<?php } ?>
+					<li> <?php 
+								if(isset($_SESSION['pseudo'])){
+											echo "Bienvenue ".$_SESSION['pseudo']."(".$_SESSION['level'].")";?>
+				<form method="post" action="<?php echo BASE_URL.'/Deconnexion';?>">
+   <input type='submit' class="btn btn-info" value='Se déconnecter'/></form>
+								<?php }
+								else { ?>
+											<li> <a href="<?php echo BASE_URL.'/Connexion';?>">Connexion</a></li> <?php
+								}
+								?>
+						</li>
+				</ul>
+				<h3 class="muted">Ajouter un Album
+			</h3>
+		</div>
+      <form action="<?php echo BASE_URL.'/Album/ajouter';?>" method="post">     
+            <table>            
+            <tr>            
+            <td><label for="titre"><strong>Titre :</strong></label></td>
+            <td><input type="text" name="titre" id="titre"/></td>            
+            </tr> 
+	            <tr>            
+            <td><label for="artiste"><strong>Artiste :</strong></label></td>
+            <td><input type="text" name="artiste" id="artiste"/></td>            
+            </tr>						
+            <tr>            
+            <td><label for="genre"><strong>Genre :</strong></label></td>
+            <td><input type="text" name="genre" id="genre"/></td>          
+            </tr>         
+            <tr>          
+            <td><label for="date"><strong>Date de sortie :</strong></label></td>
+            <td><input type="date" name="date" id="date"/></td>     
+            </tr>
+          </table>        
+        <input type="submit" class="btn btn-info" name="register" value="Ajouter"/>
+			  <?php AlbumController::insererAlbum()?>
+        </form>
+			<hr>
+			<div class="text-center">
+				<a href="<?php echo BASE_URL;?>">page d'accueil</a>
+			</div>
+	</div>
+</body>
+</html>

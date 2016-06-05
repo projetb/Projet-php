@@ -7,7 +7,7 @@ class ArtisteController extends Controller {
 		$this->view->display(); 
 
 	}
-	public function afficherAlbum() {
+	public function afficherArtiste() {
 		$id = $this->route["params"]["id"];
 		$this->view->artiste = Artiste::getFromId($id);
 		$this->view->display();

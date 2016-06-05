@@ -21,6 +21,11 @@ class Router {
             $result["action"] = "afficherListe";
             //$result["params"]["slug"] = $parts[1];            
 			  }
+				if ((count($parts) == 2) && ($parts[1] == "ajouter")){
+            $result["controller"] = "Album";
+            $result["action"] = "ajouterAlbum";
+            //$result["params"]["slug"] = $parts[1];            
+			  }
 			  if ( (count($parts) == 3) 
 				  && ($parts[1] == "afficher")
 				  && ($parts[0] == "Album")){
