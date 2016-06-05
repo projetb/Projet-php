@@ -9,6 +9,7 @@ class AlbumController extends Controller {
 	}
 	
 	public function ajouterAlbum(){
+		$this->view->list = Artiste::getList();
 		$this->view->display(); 
 	}
 	
@@ -33,7 +34,7 @@ class AlbumController extends Controller {
 						$array = $req->fetchALL();
 						$nb = count($array);
 					if ($nb<1){
-					
+				$this->artiste = Artiste::getNom($artiste);
        echo "Vous avez ajouter un album!";
 		   $sql = "INSERT INTO Album(`titre`, `dateSortie`, `genre`, `idArtiste`) values(:titre,:date,:genre,:artiste)";
 		   $stmt = $db->prepare($sql);
@@ -41,7 +42,7 @@ class AlbumController extends Controller {
 	  	$stmt->execute(array(":titre" => $titre,
 			":date"=>$date,
 			":genre"=>$genre,
-     	":artiste"=>$artiste));
+     	":artiste"=>$this->artiste->idArtiste));
 	  	return $stmt->fetch();
         }
 				else {

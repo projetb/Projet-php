@@ -42,7 +42,12 @@ session_start();
             </tr> 
 	            <tr>            
             <td><label for="artiste"><strong>Artiste :</strong></label></td>
-            <td><input type="text" name="artiste" id="artiste"/></td>
+						<td><select name="artiste">
+							 <?php foreach ($this->list as $artiste) : 
+								echo "<option>".$artiste->pseudoArtiste."</option>";
+								endforeach;	?>
+							</select>
+						</td>
 						<td><a href='<?php echo BASE_URL."/Artiste/ajouter";?>' 
 								class="btn btn-info"><i class="icon icon-plus"><i></td>
             </tr>						
