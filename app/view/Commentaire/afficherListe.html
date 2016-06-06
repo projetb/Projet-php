@@ -32,15 +32,12 @@ session_start();
 								?>
 						</li>
 				</ul>
-				<h1><?php echo $this->album->titre;?></h1>
+				<h1><?php echo $this->album->titre;?> <?php if(($this->album->pochette)!=null){?>
+						<img class="img-rounded" width="150" height="150" src="<?php echo $this->album->pochette;?>">
+								<?php }; ?></h1>
 			</div>
 			<p class="lead">
 		</p>
-		<br><br>
-		<div class="text-center">
-					<img class="img-rounded" width="200" height="200" src="<?php echo $this->album->pochette;?>">
-				</div>
-		<br>
 		<table class="table table-stripped">
 			<tr><td>Titre:</td><td><?php echo $this->album->titre;?></td></tr>
 			<tr><td>Artiste:</td><td><?php echo $this->artiste->pseudoArtiste;?></td></tr>
