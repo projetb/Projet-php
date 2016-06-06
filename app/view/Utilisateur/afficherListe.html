@@ -54,12 +54,12 @@ extract($_POST);
 						<td><?php echo $user->email;?>
 						</td>
 						<td>
-						<a href='<?php echo BASE_URL."/Utilisateur/supUser/".$user->pseudo;;?>' 
-								class="btn btn-info"><i class="icon icon-remove"><i></a></td>
+						<a href='<?php echo BASE_URL."/Utilisateur/supUser/".$user->pseudo;?>' 
+							 class="btn btn-info"><i class="icon icon-remove"></i></a></td>
 						<td>
 		<?php if($user->valide==false){ ?>
-							<a href='<?php echo BASE_URL."/Utilisateur/valideUser/".$user->pseudo;;?>' 
-								class="btn btn-info"><i class="icon-ok"><i></a></td>
+							<a href='<?php echo BASE_URL."/Utilisateur/valideUser/".$user->pseudo;?>' 
+								 class="btn btn-info"><i class="icon icon-ok"></i></a></td>
 					</tr>
 					<?php } endforeach; } 
 					else {
