@@ -18,5 +18,11 @@ class UtilisateurController extends Controller {
 		$this->view->utilisateur = Utilisateur::getFromPseudo($pseudo);
 		$this->view->display();
 	}
+	public function supUser(){
+		$pseudo=$this->route["params"]["pseudo"];
+		$this->view->utilisateur = Utilisateur::getFromPseudo($pseudo);
+		Utilisateur::supUser($pseudo);
+		$this->view->display();
+	}
 }
 ?>

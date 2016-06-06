@@ -44,6 +44,15 @@ class Utilisateur extends Model {
 		$stmt->execute(array(":pseudo" => $pseudo));
 		return $stmt->fetch();
 	}
+	
+	public static function supUser($pseudo){
+		$db = Database::getInstance();
+		$sql = "DELETE FROM Utilisateur WHERE pseudo = :pseudo";
+		$stmt = $db->prepare($sql);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, "Utilisateur");
+		$stmt->execute(array(":pseudo" => $pseudo));
+		return $stmt->fetch();
+	}
 }
 ?>
 

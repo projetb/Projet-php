@@ -77,7 +77,11 @@ class Router {
 					$result["controller"] = "Utilisateur";
 					$result["action"] = "valideUser";
 					$result["params"]["pseudo"] = $parts[2];
-					 $result["redirection"] = "afficherListe";
+				}
+	if ((count($parts) == 3 ) && ($parts[0] == "Utilisateur") && ($parts[1] == "supUser")) {
+					$result["controller"] = "Utilisateur";
+					$result["action"] = "supUser";
+					$result["params"]["pseudo"] = $parts[2];
 				}
 		if($parts[0] == "Deconnexion")  {
 			  if (count($parts) == 1){
