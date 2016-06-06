@@ -38,7 +38,7 @@ session_start();
 			<table class="table table-stripped">
 				<thead>
 					<tr>
-						<th></th><th>Titre</th><th>Date</th><th>Note <i class ="icon icon-star"></i></th><th>Artiste</th>
+						<th></th><th>Pochette</th><th>Titre</th><th>Date</th><th>Note <i class ="icon icon-star"></i></th><th>Artiste</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -46,7 +46,11 @@ session_start();
    foreach($this->list as $album) : ?>
 					<tr>
 						<td>
-						<i class ="icon icon-music"></i></td>
+						<i class ="icon icon-music"></i>
+						</td>
+						<td>
+						<img class="img-rounded" width="60" height="60" src="<?php echo $album->pochette;?>">
+						</td>
 						<td>
 							<?php echo $album->titre;?>
 						</td>

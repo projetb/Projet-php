@@ -1,10 +1,17 @@
 <?php
 
 class Album extends Model {
-	public $idAlbum, $titre, $dateSortie, $genre, $noteGeneral,$idArtiste;
+	public $idAlbum, $titre, $dateSortie, $genre, $noteGeneral,$idArtiste,$pochette;
 	public static function setFromId( $id,$data ) {                                                                                                  
 		$db = Database::getInstance();
-		$sql = "UPDATE Album set titre=:titre,dateSortie=:dateSortie,genre=:genre,noteGeneral=:noteGeneral,idArtiste=:idArtiste ,WHERE id = :id";
+		$sql = "UPDATE Album set 
+		titre=:titre,
+		dateSortie=:dateSortie,
+		genre=:genre,
+		noteGeneral=:noteGeneral,
+		idArtiste=:idArtiste,
+		pochette=:pochette,
+		WHERE id = :id";
 		$stmt = $db->prepare($sql);
 		//$stmt->setFetchMode(PDO::FETCH_CLASS, "Contact");
 		return $stmt->execute(array(
@@ -13,6 +20,7 @@ class Album extends Model {
 			":dateSortie"=>$data['dateSortie'],
 			":genre"=>$data['genre'],
 			":idArtiste"=>$data['idArtiste'],
+			":pochette"=>$data['pochette'],
       ":noteGeneral"=>$data['noteGeneral']));
 		//return $stmt->fetch();
 	}
