@@ -46,23 +46,18 @@ extract($_POST);
 				</thead>
 				<tbody>
 					<?php  if (isset($_SESSION['pseudo']) && $_SESSION['level']=='admin'){
-						foreach($this->list as $artiste) : ?>
+						foreach($this->list as $user) : ?>
 					<tr>
 						<td>
-							<?php echo $artiste->pseudo;?>
+							<?php echo $user->pseudo;?>
 						</td>
-						<td><?php echo $artiste->email;?>
+						<td><?php echo $user->email;?>
 						</td>
 						<td>
-							<form method="post" name ="accepter" action="<?php echo BASE_URL.'/Utilisateur';?>">
-   								<input type='submit' class="btn btn-info" value='<?php echo $artiste->pseudo;?>'/>
-								</form>
-									<?php if($artiste->valide==false){ ?>
-								<!--	<input type='submit' class="btn btn-info" value='null'/> -->
-							
-						</td>
+		<?php if($user->valide==false){ ?>
+							<a href='<?php echo BASE_URL."/Utilisateur/valideUser/".$user->pseudo;;?>' 
+								class="btn btn-info"><i class="icon icon-plus"><i></a></td>
 					</tr>
-							<!--a href="contact/afficher/<?php echo $contact->id;?>"></a></td><td><?php echo $contact->prenom." ".$contact->nom;?></td></tr-->
 					<?php } endforeach; } 
 					else {
 								echo "<h4> Vous devez être connecté en tant qu'ADMIN pour consulter les membres (Redirection) </h4>";

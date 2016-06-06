@@ -67,12 +67,18 @@ class Router {
             $result["action"] = "ajouterArtiste";            
 			  }
 		}
-		if($parts[0] == "Utilisateur")  {
-			  if (count($parts) == 1){
+		if (count($parts) == 1){
+					if($parts[0] == "Utilisateur")  {
 				  $result["controller"] = "Utilisateur";
-				  $result['action'] = "afficherListe";
+				 $result["action"] = "afficherListe";
 			  }
-		}
+			}
+			if ((count($parts) == 3 ) && ($parts[0] == "Utilisateur") && ($parts[1] == "valideUser")) {
+					$result["controller"] = "Utilisateur";
+					$result["action"] = "valideUser";
+					$result["params"]["pseudo"] = $parts[2];
+					 $result["redirection"] = "afficherListe";
+				}
 		if($parts[0] == "Deconnexion")  {
 			  if (count($parts) == 1){
 				  $result["controller"] = "Deconnexion";

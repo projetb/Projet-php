@@ -37,7 +37,7 @@ class Utilisateur extends Model {
 		return $stmt->fetchAll();
 	}
 	public static function valideUser($pseudo){
-			$db = Database::getInstance();
+		$db = Database::getInstance();
 		$sql = "UPDATE Utilisateur set valide=true WHERE pseudo = :pseudo";
 		$stmt = $db->prepare($sql);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, "Utilisateur");

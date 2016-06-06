@@ -12,5 +12,11 @@ class UtilisateurController extends Controller {
 		$this->view->utilisateur = Utilisateur::getFromId($id);
 		$this->view->display();
 	}
+	public function valideUser(){
+		$pseudo=$this->route["params"]["pseudo"];
+		Utilisateur::valideUser($pseudo);
+		$this->view->utilisateur = Utilisateur::getFromPseudo($pseudo);
+		$this->view->display();
+	}
 }
 ?>
