@@ -42,7 +42,7 @@ extract($_POST);
 				<thead>
 					<tr>
 						<th></th>
-						<th>Pseudo</th><th>E-mail</th>
+						<th>Pseudo</th><th>E-mail</th><th>Supprimer</th><th>Valider</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -57,13 +57,17 @@ extract($_POST);
 						}
 						?>><i class ="icon icon-user"></i></td>
 						<td>
-							<?php echo $user->pseudo;?>
+							<?php echo $user->pseudo;
+									if($user->pseudo==$_SESSION['pseudo']){
+									echo "  <i class='icon icon-hand-left'></i>";
+									}
+							?>
 						</td>
 						<td><?php echo $user->email;?>
 						</td>
 						<td>
 						<a href='<?php echo BASE_URL."/Utilisateur/supUser/".$user->pseudo;?>' 
-							 class="btn btn-info"><i class="icon icon-remove"></i></a></td>
+							 class="btn"><i class="icon icon-remove"></i></a></td>
 						<td>
 		<?php if($user->valide==false){ ?>
 							<a href='<?php echo BASE_URL."/Utilisateur/valideUser/".$user->pseudo;?>' 
