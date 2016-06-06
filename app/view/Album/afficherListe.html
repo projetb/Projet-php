@@ -34,19 +34,19 @@ session_start();
 				</ul>
 				<h1>Listes des albums</h1>
 			</div>
-			<form method="post" action="<?php echo BASE_URL.'/Album/ajouter';?>">
-				<input type='submit'  class="btn btn-info" value='Cliquez ici pour ajouter un album !!!'/>
-			</form>
+			
 			<table class="table table-stripped">
 				<thead>
 					<tr>
-						<th>Titre</th><th>Date</th><th>Note</th><th>Artiste</th>
+						<th></th><th>Titre</th><th>Date</th><th>Note <i class ="icon icon-star"></i></th><th>Artiste</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php if (isset($_SESSION['pseudo'])){
    foreach($this->list as $album) : ?>
 					<tr>
+						<td>
+						<i class ="icon icon-music"></i></td>
 						<td>
 							<?php echo $album->titre;?>
 						</td>
@@ -67,9 +67,14 @@ echo "<h4> Vous devez être connecté pour consuler les albums (Redirection) </h
 			</table>
 			<footer>
 				<hr>
+				<div class="text-right">
+				<form method="post" action="<?php echo BASE_URL.'/Album/ajouter';?>">
+				<input type='submit' class="btn btn-info row-fluid" value='Ajouter un album'/>
+					</div>
 				<div class="text-center">
 					<a href="<?php echo BASE_URL;?>">page d'accueil</a>
 				</div>
+			</form>
 			</footer>
 		</div>
 	</body>

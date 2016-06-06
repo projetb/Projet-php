@@ -7,6 +7,15 @@
  *
  * Designed and built with all the love in the world by @mdo and @fat.
  */
+.row-fluid{
+  display: table-cell;
+  vertical-align: bottom;
+  float: none;
+}
+
+.cadre {
+  border-radius: 100px;
+}
 
 .commEcrit{
   font-size:17px;

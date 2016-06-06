@@ -34,9 +34,6 @@ session_start();
 				</ul>
 				<h1>Listes des artistes</h1>
 			</div>
-			<form method="post" action="<?php echo BASE_URL.'/Artiste/ajouter';?>">
-				<input type='submit'  class="btn btn-info" value='Cliquez ici pour ajouter un artiste !!!'/>
-			</form>
 			<table class="table table-stripped">
 				<thead>
 					<tr>
@@ -65,6 +62,10 @@ session_start();
 			</table>
 			<footer>
 				<hr>
+				<div class="text-right">
+				<form method="post" action="<?php echo BASE_URL.'/Album/ajouter';?>">
+				<input type='submit' class="btn btn-info row-fluid" value='Ajouter un artiste'/>
+					</div>
 				<div class="text-center">
 					<a href="<?php echo BASE_URL;?>">page d'accueil</a>
 				</div>

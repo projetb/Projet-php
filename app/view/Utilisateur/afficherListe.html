@@ -41,6 +41,7 @@ extract($_POST);
 			<table class="table table-stripped">
 				<thead>
 					<tr>
+						<th></th>
 						<th>Pseudo</th><th>E-mail</th>
 					</tr>
 				</thead>
@@ -48,6 +49,13 @@ extract($_POST);
 					<?php  if (isset($_SESSION['pseudo']) && $_SESSION['level']=='admin'){
 						foreach($this->list as $user) : ?>
 					<tr>
+						<td  class="cadre"<?php if ($user->valide==1){
+						echo "bgcolor='green'";
+						}
+						else{
+						echo "bgcolor='red'";
+						}
+						?>><i class ="icon icon-user"></i></td>
 						<td>
 							<?php echo $user->pseudo;?>
 						</td>
