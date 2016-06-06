@@ -37,13 +37,19 @@ session_start();
 			<table class="table table-stripped">
 				<thead>
 					<tr>
-						<th>Pseudo</th><th>Description</th>
+						<th></th><th>Pseudo</th><th>Description</th>
 					</tr>
 				</thead>
 				<tbody>
+				
 					<?php  if (isset($_SESSION['pseudo'])){
 						foreach($this->list as $artiste) : ?>
 					<tr>
+							<td>
+								<?php if(($artiste->profil)!=null){?>
+						<img class="img-rounded" width="60" height="60" src="<?php echo $artiste->profil;?>">
+								<?php }; ?>
+						</td>
 						<td>
 							<?php echo $artiste->pseudoArtiste;?>
 						</td>

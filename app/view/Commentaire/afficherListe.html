@@ -37,6 +37,10 @@ session_start();
 			<p class="lead">
 		</p>
 		<br><br>
+		<div class="text-center">
+					<img class="img-rounded" width="200" height="200" src="<?php echo $this->album->pochette;?>">
+				</div>
+		<br>
 		<table class="table table-stripped">
 			<tr><td>Titre:</td><td><?php echo $this->album->titre;?></td></tr>
 			<tr><td>Artiste:</td><td><?php echo $this->artiste->pseudoArtiste;?></td></tr>
@@ -48,7 +52,7 @@ session_start();
       <label for="message">Message :</label>
       <textarea cols="50" rows="5" name="commentaire" id="commentaire" style="margin: 0px 0px 10px; width: 925px; height: 100px;" ></textarea>
       <br>
-      <input type="submit" name="envoyer" value="Envoyer"/>
+      <input class="btn btn-info" type="submit" name="envoyer" value="Envoyer"/>
       <?php if (CommentaireController::commenter()==true){
 				header("Refresh:0"); }
 				?>

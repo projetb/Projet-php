@@ -49,7 +49,9 @@ session_start();
 						<i class ="icon icon-music"></i>
 						</td>
 						<td>
+								<?php if(($album->pochette)!=null){?>
 						<img class="img-rounded" width="60" height="60" src="<?php echo $album->pochette;?>">
+								<?php }; ?>
 						</td>
 						<td>
 							<?php echo $album->titre;?>
