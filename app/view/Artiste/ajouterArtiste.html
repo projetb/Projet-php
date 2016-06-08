@@ -43,7 +43,11 @@ session_start();
 	            <tr>            
             <td><label for="description"><strong>Description :</strong></label></td>
             <td><input type="text" name="description" id="description"/></td>            
-            </tr>						
+            </tr>
+						<tr>            
+            <td><label for="url"><strong>Image lien url :</strong></label></td>
+            <td><input type="text" name="url" id="url"/></td>
+            </tr>	
           </table>        
         <input type="submit" class="btn btn-info" name="register" value="Ajouter"/>
 			  <?php ArtisteController::insererArtiste()?>
