@@ -69,6 +69,7 @@ class CommentaireController extends Controller {
 			":pseudo"=>$_SESSION['pseudo'],
 			":album"=>$idAlbum->idAlbum));	
 		}
+		Album::noteGeneral($idAlbum);
 		$this->view->display();
 		return $stmt->fetch();
 	}
