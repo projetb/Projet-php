@@ -36,13 +36,25 @@ class AlbumController extends Controller {
 					if ($nb<1){
 				$this->artiste = Artiste::getId($artiste);
        echo "Vous avez ajouter un album!";
-		   $sql = "INSERT INTO Album(`titre`, `dateSortie`, `genre`, `idArtiste`) values(:titre,:date,:genre,:artiste)";
+			if($url!=""){
+		   $sql = "INSERT INTO Album(`titre`, `dateSortie`, `genre`, `idArtiste`, `pochette`) values(:titre,:date,:genre,:artiste,:pochette)";
+		   $stmt = $db->prepare($sql);
+		  $stmt->setFetchMode(PDO::FETCH_CLASS, "Album");
+	  	$stmt->execute(array(":titre" => $titre,
+			":date"=>$date,
+			":genre"=>$genre,
+     	":artiste"=>$this->artiste->idArtiste,
+			":pochette"=>$url));
+			}
+			else{
+				$sql = "INSERT INTO Album(`titre`, `dateSortie`, `genre`, `idArtiste`) values(:titre,:date,:genre,:artiste)";
 		   $stmt = $db->prepare($sql);
 		  $stmt->setFetchMode(PDO::FETCH_CLASS, "Album");
 	  	$stmt->execute(array(":titre" => $titre,
 			":date"=>$date,
 			":genre"=>$genre,
      	":artiste"=>$this->artiste->idArtiste));
+			}
 	  	return $stmt->fetch();
         }
 				else {

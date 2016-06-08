@@ -14,7 +14,6 @@ class ArtisteController extends Controller {
 	public function afficherArtiste() {
 		$id = $this->route["params"]["id"];
 		$this->view->artiste = Artiste::getId($id); // Getfrompseudo
-		$this->view->list= Album::getAlbumsFromArtiste($this->view->artiste->idArtiste);
 		$this->view->display();
 	}
 	
@@ -35,7 +34,7 @@ class ArtisteController extends Controller {
 					if ($nb<1){
 					
        echo "Vous avez ajouter un artiste!";
-				if (isset($url)){
+				if ($url!=null){
 		   $sql = "INSERT INTO Artiste(`pseudoArtiste`, `description`, `ajouterPar`, `profil`) values(:pseudo,:description,:user,:profil)";
 				$stmt = $db->prepare($sql);
 		  $stmt->setFetchMode(PDO::FETCH_CLASS, "Artiste");
