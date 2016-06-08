@@ -27,7 +27,7 @@ class AlbumController extends Controller {
             echo " Champs incomplets.Veuillez réessayer";
         }
         else if  ($titre!="" && $artiste!="" && $genre!="" && $date!="") {
-		          $db = Database::getInstance();
+		        $db = Database::getInstance();
 						$sql = "select * from Album where titre=:titre and idArtiste=:id";
 						$req = $db->prepare($sql);
 						$req->execute(array(":titre"=>$titre,":id"=>$artiste));
