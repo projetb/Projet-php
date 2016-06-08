@@ -132,9 +132,7 @@ CREATE TABLE IF NOT EXISTS `Note` (
   `dateNote` date NOT NULL,
   `album` int(11) NOT NULL,
   `pseudo` varchar(40) NOT NULL,
-  PRIMARY KEY (`album`,`pseudo`),
-  UNIQUE KEY `album` (`album`),
-  UNIQUE KEY `pseudo` (`pseudo`)
+  PRIMARY KEY (`album`,`pseudo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

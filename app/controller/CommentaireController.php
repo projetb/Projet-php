@@ -45,12 +45,27 @@ class CommentaireController extends Controller {
 		$this->view->album=$this->route["params"]["album"];
 		$idAlbum=Album::getNom($this->view->album);
 		$db = Database::getInstance();
-		$sql = "UPDATE `Note` SET `valeur`=:note,`dateNote`=NOW() where pseudo=:pseudo and album=:album";
+		$sql = "select * from Note where pseudo=:pseudo and album=:album";
 		$stmt = $db->prepare($sql);
-		$stmt->setFetchMode(PDO::FETCH_CLASS, "Note");
-	  $stmt->execute(array(":note" => $this->view->note,
-		":pseudo"=>"admin",
-		":album"=>$idAlbum->idAlbum));
+		$stmt->execute(array(":album"=>$idAlbum->idAlbum,":pseudo"=>"admin"));
+		$array = $stmt->fetchALL();
+		$nb = count($array);
+		if ($nb<1){
+			$sql = "INSERT INTO Note(`valeur`, `dateNote`, `album`, `pseudo`) values(:note,NOW(),:album,:pseudo)";
+			$stmt = $db->prepare($sql);
+		  $stmt->setFetchMode(PDO::FETCH_CLASS, "Note");
+	  	$stmt->execute(array(":note" => $this->view->note,
+			":album"=>$idAlbum->idAlbum,
+			":pseudo"=>"admin"));
+		}
+		else{
+			$sql = "UPDATE `Note` SET `valeur`=:note,`dateNote`=NOW() where pseudo=:pseudo and album=:album";
+			$stmt = $db->prepare($sql);
+			$stmt->setFetchMode(PDO::FETCH_CLASS, "Note");
+			$stmt->execute(array(":note" => $this->view->note,
+			":pseudo"=>"admin",
+			":album"=>$idAlbum->idAlbum));	
+		}
 		$this->view->display();
 		return $stmt->fetch();
 	}
