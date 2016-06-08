@@ -43,12 +43,14 @@ class CommentaireController extends Controller {
 	public function note(){
 		$this->view->note=$this->route["params"]["note"];
 		$this->view->album=$this->route["params"]["album"];
+		$idAlbum=Album::getNom($this->view->album);
 		$db = Database::getInstance();
-		$sql = "UPDATE `Note` SET `valeur`=:note,`dateNote`=NOW() where pseudo=:pseudo";
+		$sql = "UPDATE `Note` SET `valeur`=:note,`dateNote`=NOW() where pseudo=:pseudo and album=:album";
 		$stmt = $db->prepare($sql);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, "Note");
 	  $stmt->execute(array(":note" => $this->view->note,
-		":pseudo"=>"admin"));
+		":pseudo"=>"admin",
+		":album"=>$idAlbum->idAlbum));
 		$this->view->display();
 		return $stmt->fetch();
 	}
