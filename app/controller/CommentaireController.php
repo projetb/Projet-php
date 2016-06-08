@@ -1,5 +1,6 @@
 <?php
 
+
 class CommentaireController extends Controller {
 	
 	public function afficherListe(){
@@ -41,13 +42,15 @@ class CommentaireController extends Controller {
 	}
 	
 	public function note(){
+		if (!isset($_SESSION['pseudo'])){session_start();}
 		$this->view->note=$this->route["params"]["note"];
 		$this->view->album=$this->route["params"]["album"];
+		//echo $_SESSION['pseudo'];
 		$idAlbum=Album::getNom($this->view->album);
 		$db = Database::getInstance();
 		$sql = "select * from Note where pseudo=:pseudo and album=:album";
 		$stmt = $db->prepare($sql);
-		$stmt->execute(array(":album"=>$idAlbum->idAlbum,":pseudo"=>"admin"));
+		$stmt->execute(array(":album"=>$idAlbum->idAlbum,":pseudo"=>$_SESSION['pseudo']));
 		$array = $stmt->fetchALL();
 		$nb = count($array);
 		if ($nb<1){
@@ -56,14 +59,14 @@ class CommentaireController extends Controller {
 		  $stmt->setFetchMode(PDO::FETCH_CLASS, "Note");
 	  	$stmt->execute(array(":note" => $this->view->note,
 			":album"=>$idAlbum->idAlbum,
-			":pseudo"=>"admin"));
+			":pseudo"=>$_SESSION['pseudo']));
 		}
 		else{
 			$sql = "UPDATE `Note` SET `valeur`=:note,`dateNote`=NOW() where pseudo=:pseudo and album=:album";
 			$stmt = $db->prepare($sql);
 			$stmt->setFetchMode(PDO::FETCH_CLASS, "Note");
 			$stmt->execute(array(":note" => $this->view->note,
-			":pseudo"=>"admin",
+			":pseudo"=>$_SESSION['pseudo'],
 			":album"=>$idAlbum->idAlbum));	
 		}
 		$this->view->display();
