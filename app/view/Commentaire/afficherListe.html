@@ -41,7 +41,7 @@ session_start();
 		</p>
 		<table class="table table-stripped">
 			<tr><td>Titre:</td><td><?php echo $this->album->titre;?></td></tr>
-			<tr><td>Artiste:</td><td><?php echo $this->artiste->pseudoArtiste;?></td></tr>
+			<tr><td>Artiste:</td><td><a href="<?php echo BASE_URL.'/Artiste/afficher/'.$this->artiste->pseudoArtiste ?>"><?php echo $this->artiste->pseudoArtiste;?></a></td></tr>
 			<tr><td>Genre:</td><td><?php echo $this->album->genre;?></td></tr>
 			<tr><td>Note:</td><td>
     <?php for($i=1;$i<=5;$i=$i+1){
