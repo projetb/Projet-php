@@ -57,11 +57,11 @@ session_start();
    <tr><td>Date de Sortie:</td><td><?php echo $this->album->dateSortie;?></td></tr>
   </table>
   <div class="rating">
-   <a href="#5">★</a>
-   <a href="#4">★</a>
-   <a href="#3">★</a>
-   <a href="#2">★</a>
-   <a href="#1">★</a>
+   <a href="<?php echo BASE_URL.'/Album/afficher/'.($this->album->titre);?>">★</a>
+   <a href="<?php echo BASE_URL.'/Album/afficher/'.($this->album->titre);?>">★</a>
+   <a href="<?php echo BASE_URL.'/Album/afficher/'.($this->album->titre);?>">★</a>
+   <a href="<?php echo BASE_URL.'/Album/afficher/'.($this->album->titre);?>">★</a>
+   <a href="<?php echo BASE_URL.'/Album/afficher/'.($this->album->titre);?>">★</a>
   </div>
   <br><br>
 		<form action="<?php echo BASE_URL.'/Album/afficher/'.($this->album->titre);?>" method="post">

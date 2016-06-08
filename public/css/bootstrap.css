@@ -12,9 +12,12 @@
    direction: rtl;
 }
 
+
+
 .rating a {
    color: #aaa;
-   text-decoration: none;
+   /*text-decoration:none;
+  text-decoration: underline;*/  
    font-size: 3em;
    transition: color .4s;
 }
@@ -270,6 +273,10 @@ a:hover,
 a:focus {
   color: #005580;
   text-decoration: underline;
+}
+
+.rating > a:hover, a:focus {
+   text-decoration:none;
 }
 
 .img-rounded {
