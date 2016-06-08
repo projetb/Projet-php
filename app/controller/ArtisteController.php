@@ -35,12 +35,23 @@ class ArtisteController extends Controller {
 					if ($nb<1){
 					
        echo "Vous avez ajouter un artiste!";
-		   $sql = "INSERT INTO Artiste(`pseudoArtiste`, `description`, `ajouterPar`) values(:pseudo,:description,:user)";
+				if (isset($url)){
+		   $sql = "INSERT INTO Artiste(`pseudoArtiste`, `description`, `ajouterPar`, `profil`) values(:pseudo,:description,:user,:profil)";
+				$stmt = $db->prepare($sql);
+		  $stmt->setFetchMode(PDO::FETCH_CLASS, "Artiste");
+	  	$stmt->execute(array(":pseudo" => $pseudo,
+			":description"=>$description,
+			":user"=>$_SESSION['pseudo'],
+			":profil"=>$url));
+				}
+			else{
+				$sql = "INSERT INTO Artiste(`pseudoArtiste`, `description`, `ajouterPar`) values(:pseudo,:description,:user)";
 		   $stmt = $db->prepare($sql);
 		  $stmt->setFetchMode(PDO::FETCH_CLASS, "Artiste");
 	  	$stmt->execute(array(":pseudo" => $pseudo,
 			":description"=>$description,
 			":user"=>$_SESSION['pseudo']));
+					}
 	  	return $stmt->fetch();
         }
 				else {
