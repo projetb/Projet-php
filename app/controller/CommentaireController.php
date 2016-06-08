@@ -12,7 +12,7 @@ class CommentaireController extends Controller {
 	}
 	public function afficherCommentaire() {
 		$id = $this->route["params"]["id"];
-		$this->view->commentaire = Commentaire::getFromId($id);;
+		$this->view->commentaire = Commentaire::getFromId($id);
 		$this->view->display();
 	}
   
@@ -38,6 +38,19 @@ class CommentaireController extends Controller {
 		$this->view->album=Album::getFromId($value);
 		Commentaire::supCom($id);
 		$this->view->display();
+	}
+	
+	public function note(){
+		$this->view->note=$this->route["params"]["note"];
+		$this->view->album=$this->route["params"]["album"];
+		$db = Database::getInstance();
+		$sql = "UPDATE `Note` SET `valeur`=:note,`dateNote`=NOW() where pseudo=:pseudo";
+		$stmt = $db->prepare($sql);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, "Note");
+	  $stmt->execute(array(":note" => $this->view->note,
+		":pseudo"=>"admin"));
+		$this->view->display();
+		return $stmt->fetch();
 	}
 }
 ?>

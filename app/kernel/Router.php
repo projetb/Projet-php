@@ -34,6 +34,15 @@ class Router {
 					  $result["action"] = "afficherListe";
 					  $result["params"]["id"] = $parts[2];            
 				  }
+				if ( (count($parts) == 4) 
+				  && ($parts[2] == "note")
+				  && ($parts[0] == "Album")){
+
+					  $result["controller"] = "Commentaire";
+					  $result["action"] = "Note";
+						$result["params"]["album"] = $parts[1]; 
+					  $result["params"]["note"] = $parts[3];            
+				  }
 			
 				}
 				

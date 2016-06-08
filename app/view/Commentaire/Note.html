@@ -31,9 +31,9 @@
 				<h3 class="muted">Gestion des musiques
 			</h3>
 		</div>
-		<p class="lead">Le commentaire <?php echo $this->commentaire->idCommentaire; ?> vient d'être supprimé..! Redirection..
+		<p class="lead">  Vous avez donné un <?php echo $this->note;?>/5 à l'album <?php echo $this->album;?> !!! Redirection..
 			<?php 
-header('Refresh: 1;/public/Album/afficher/'.$this->album->titre); ?>
+header('Refresh: 2;/public/Album/afficher/'.$this->album); ?>
 		</p>
 			<hr>
 			<div class="text-center">
