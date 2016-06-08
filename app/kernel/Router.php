@@ -34,6 +34,7 @@ class Router {
 					  $result["action"] = "afficherListe";
 					  $result["params"]["id"] = $parts[2];            
 				  }
+				
 			  //
 
 			  if ((count($parts) == 3) && ($parts[1] == "modifier")){
@@ -66,6 +67,14 @@ class Router {
             $result["controller"] = "Artiste";
             $result["action"] = "ajouterArtiste";            
 			  }
+				  if ( (count($parts) == 3) 
+				  && ($parts[1] == "afficher")
+				  && ($parts[0] == "Artiste")){
+
+					  $result["controller"] = "Artiste";
+					  $result["action"] = "afficherArtiste";
+					  $result["params"]["id"] = $parts[2];            
+				  }
 		}
 		if (count($parts) == 1){
 					if($parts[0] == "Utilisateur")  {
