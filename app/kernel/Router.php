@@ -34,8 +34,14 @@ class Router {
 					  $result["action"] = "afficherListe";
 					  $result["params"]["id"] = $parts[2];            
 				  }
+			
+				}
 				
 			  //
+					if ((count($parts) == 3 ) && ($parts[0] == "Commentaire") && ($parts[1] == "supCom")) {
+					$result["controller"] = "Commentaire";
+					$result["action"] = "supCom";
+					$result["params"]["id"] = $parts[2];
 
 			  if ((count($parts) == 3) && ($parts[1] == "modifier")){
 

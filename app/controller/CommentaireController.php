@@ -30,5 +30,14 @@ class CommentaireController extends Controller {
 	  		return $stmt->fetch();
         }   
   }
+	public function supCom(){
+		$id=$this->route["params"]["id"];
+		$this->view->commentaire = Commentaire::getCom($id);
+		$value=$this->view->commentaire->album;
+		echo $value;
+		$this->view->album=Album::getFromId($value);
+		Commentaire::supCom($id);
+		$this->view->display();
+	}
 }
 ?>
