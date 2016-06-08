@@ -44,6 +44,44 @@ session_start();
 			<tr><td>Description:</td><td><?php echo $this->artiste->description;?></td></tr>
 			<tr><td>Ajouté par:</td><td><?php echo $this->artiste->ajouterPar;?></td></tr>
   </table>
+    <br>
+    
+    <table class="table table-stripped">
+				<thead> <h2> Liste des albums de <?php echo $this->artiste->pseudoArtiste; ?></h2>
+					<tr>
+						<th></th><th>Pochette</th><th>Titre</th><th>Date</th><th>Note <!--<i class ="icon icon-star"></i>--></th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php if (isset($_SESSION['pseudo'])){
+   foreach($this->list as $album) :
+    if($album->idArtiste==$this->artiste->idArtiste){?>
+					<tr>
+						<td>
+						<i class ="icon icon-music"></i>
+						</td>
+						<td>
+								<?php if(($album->pochette)!=null){?>
+						<img class="img-rounded" width="60" height="60" src="<?php echo $album->pochette;?>">
+								<?php }; ?>
+						</td>
+						<td>
+							<?php echo $album->titre;?>
+						</td>
+						<td><?php echo $album->dateSortie;?>
+						</td>
+						<td><?php echo $album->noteGeneral;?></td>
+						<td><a href='<?php echo BASE_URL."/Album/afficher/".$album->titre;?>' 
+								class="btn btn-info"><i class="icon icon-search"><i></a></td>
+							</tr>
+							<!--a href="contact/afficher/<?php echo $contact->id;?>"></a></td><td><?php echo $contact->prenom." ".$contact->nom;?></td></tr-->
+					<?php  } endforeach; }
+					else {
+echo "<h4> Vous devez être connecté pour consuler les albums (Redirection) </h4>";
+	header('Refresh: 2;/public/Connexion');
+							}?>
+				</tbody>
+			</table>
 				</tbody>
 			</table>
 			<footer>

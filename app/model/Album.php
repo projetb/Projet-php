@@ -41,7 +41,14 @@ class Album extends Model {
 		$stmt->setFetchMode(PDO::FETCH_CLASS, "Album");
 		return $stmt->fetchAll();
 	}
-	
+	public static function getAlbumsFromArtiste($id){
+		$db = Database::getInstance();
+		$sql = "SELECT * FROM Album WHERE idArtiste = :id";
+		$stmt = $db->prepare($sql);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, "Album");
+		$stmt->execute(array(":id" => $id));
+		return $stmt->fetchAll();
+	}
 	public static function getNom( $id ){
 		$db = Database::getInstance();
 		$sql = "SELECT * FROM Album WHERE titre= :id";

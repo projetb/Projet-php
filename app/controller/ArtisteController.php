@@ -14,6 +14,7 @@ class ArtisteController extends Controller {
 	public function afficherArtiste() {
 		$id = $this->route["params"]["id"];
 		$this->view->artiste = Artiste::getId($id); // Getfrompseudo
+		$this->view->list= Album::getAlbumsFromArtiste($this->view->artiste->idArtiste);
 		$this->view->display();
 	}
 	
