@@ -73,15 +73,17 @@ echo "<h4> Vous devez être connecté pour consuler les albums (Redirection) </h
 				</tbody>
 			</table>
 			<footer>
-				<hr>
+				<hr><?php if(isset($_SESSION['pseudo'])) {?>
 				<div class="text-right">
 				<form method="post" action="<?php echo BASE_URL.'/Album/ajouter';?>">
 				<input type='submit' class="btn btn-info row-fluid" value='Ajouter un album'/>
 					</div>
+					</form>
+					<?php } ?>
 				<div class="text-center">
 					<a href="<?php echo BASE_URL;?>">page d'accueil</a>
 				</div>
-			</form>
+			
 			</footer>
 		</div>
 	</body>
