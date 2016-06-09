@@ -41,6 +41,15 @@ class Album extends Model {
 		$stmt->setFetchMode(PDO::FETCH_CLASS, "Album");
 		return $stmt->fetchAll();
 	}
+	public static function getPalma(){
+		$db = Database::getInstance();
+		$sql = "SELECT * FROM `Album` ORDER BY `Album`.`noteGeneral` DESC LIMIT 3";
+		$stmt = $db->query($sql);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, "Album");
+		return $stmt->fetchAll();
+	}
+	
+	
 	public static function getAlbumsFromArtiste($id){
 		$db = Database::getInstance();
 		$sql = "SELECT * FROM Album WHERE idArtiste = :id";

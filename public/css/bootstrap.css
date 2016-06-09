@@ -7,6 +7,23 @@
  *
  * Designed and built with all the love in the world by @mdo and @fat.
  */
+.podium {
+  text-align: center;
+}
+.podium div {
+  width:200px;
+  height:200px;
+}
+.top1 {
+  margin:auto
+}
+.top2 {
+  display:inline-block;
+}
+.top3 {
+  display:inline-block;
+}
+
 
 .rating {
    direction: rtl;

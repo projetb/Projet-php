@@ -35,7 +35,36 @@
 		</div>
 		<p class="lead">Bienvenue sur votre application de gestion de vos musiques.
 		</p>
-			<hr>
+			
+								<?php if (isset($_SESSION['pseudo'])){ ?>
+  
+				<thead> <h2> Les meilleurs albums: </h2>
+ 
+			
+			<div class="podium">
+		<div class="top1">
+				<a href='<?php echo BASE_URL."/Album/afficher/".$this->list[0]->titre;?>' 
+								class="btn btn-info">1</a><br>
+			<img class="img-rounded" width="200" height="200" src="<?php echo $this->list[0]->pochette;?>">
+			<?php echo $this->list[0]->titre;?>
+				</div>
+		
+	<div class="top2">
+				<a href='<?php echo BASE_URL."/Album/afficher/".$this->list[1]->titre;?>' 
+								class="btn btn-info">2</a><br>
+			<img class="img-rounded" width="200" height="200" src="<?php echo $this->list[1]->pochette;?>">
+			<?php echo $this->list[1]->titre;?>
+				</div>
+				
+	<div class="top3">
+				<a href='<?php echo BASE_URL."/Album/afficher/".$this->list[2]->titre;?>' 
+								class="btn btn-info">3</a><br>
+			<img class="img-rounded" width="200" height="200" src="<?php echo $this->list[2]->pochette;?>">
+			<?php echo $this->list[2]->titre;?>
+				</div>
+			</div>
+			<?php } ?>
+			
 			<div class="text-center">
 				<a href="<?php echo BASE_URL;?>">page d'accueil</a>
 			</div>
