@@ -32,8 +32,8 @@ class ConnexionController extends Controller {
 				$_SESSION['level'] ='admin';
 				$_SESSION['pseudo'] = $data['pseudo'];
 	   		$message = "<p>Bienvenue ".$data['pseudo']."(".$_SESSION['level']."), 
-				Redirection vers les albums ..</p>";  
-				header('Refresh: 2;/public/Album');
+				Redirection ..</p>";  
+				header('Refresh: 2;/public/');
 			}
 			else{
 				echo "Impossible vous n'avez pas de compte ADMIN";
@@ -43,8 +43,8 @@ class ConnexionController extends Controller {
 			 $_SESSION['pseudo'] = $data['pseudo'];
 			$_SESSION['level'] ='user';
 	    $message = "<p>Bienvenue ".$data['pseudo']."(".$_SESSION['level']."), 
-			Redirection vers les albums ..</p>";  
-		header('Refresh: 2;/public/Album');
+			Redirection ..</p>";  
+		header('Refresh: 2;/public/');
 		}
 		else {
 			echo "<br>Votre compte n'est pas encore validé.";
