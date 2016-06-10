@@ -34,6 +34,48 @@ session_start();
 				</ul>
 				<h1>Listes des albums</h1>
 			</div>
+			<h2>Recherche</h2>
+			<form action="<?php echo BASE_URL.'/Album/rechercher';?>" method="post">
+			<table class="table table-stripped">
+				<tr>
+					<td><label for="artiste"><strong>Artiste :</strong></label>
+						<select name="artiste">
+							<option>Tous</option>
+							<?php foreach ($this->list as $artiste) : 
+								echo "<option>".$artiste->pseudoArtiste."</option>";
+							endforeach;	?>
+						</select>
+					</td>
+					<td><label for="note"><strong>Note :</strong></label>
+						<select name="note">
+							<option>Tous</option>
+							<option>0 ou +</option>
+							<option>1 ou +</option>
+							<option>2 ou +</option>
+							<option>3 ou +</option>
+							<option>4 ou +</option>
+							<option>5</option>
+						</select>
+					</td>
+					<td><label for="genre"><strong>Genre :</strong></label>
+						<select name="genre">
+							<option>Tous</option>
+							<option>Rap</option>
+							<option>Pop</option>
+							<option>Electro</option>
+							<option>Chill</option>
+							<option>Rock</option>
+							<option>Jazz</option>
+						</select>
+					</td>
+					<td><label for="date"><strong>Sortie le :</strong></label>
+					<input type="date" name="date" id="date"/></td>	
+				</tr>
+				<td><input type="submit" class="btn btn-info" name="recherche" value="Rechercher"/></td>
+				
+			</table>
+			</form>
+			<br><br>
 			<table class="table table-stripped">
 				<thead>
 					<tr>
