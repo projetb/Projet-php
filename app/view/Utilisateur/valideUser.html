@@ -14,7 +14,11 @@
 					<li> <a href="<?php echo BASE_URL.'/Inscription';?>">Inscription </a></li>
 					<li> <a href="<?php echo BASE_URL.'/Album';?>">Liste des albums</a></li>
 					<li> <a href="<?php echo BASE_URL.'/Artiste';?>">Liste des artistes</a></li>
-					</li>
+					<?php
+					 if(isset($_SESSION['pseudo'])){
+					?>
+					<li> <a href="<?php echo BASE_URL.'/Utilisateur';?>">Membres</a></li>
+					<?php } ?>
 					<li> <?php 
 								if(isset($_SESSION['pseudo'])){
 											echo "Bienvenue ".$_SESSION['pseudo']; ?>
