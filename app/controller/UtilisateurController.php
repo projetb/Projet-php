@@ -7,9 +7,11 @@ class UtilisateurController extends Controller {
 		$this->view->display(); 
 
 	}
-	public function afficherUtilisateur() {
-		$id = $this->route["params"]["id"];
-		$this->view->utilisateur = Utilisateur::getFromId($id);
+	public function afficherUser() {
+		$pseudo = $this->route["params"]["pseudo"];
+		$this->view->utilisateur = Utilisateur::getFromPseudo($pseudo);
+		$this->view->listNote= Note::getFromPseudo($pseudo);
+		$this->view->listCom= Commentaire::getListFromPseudo($pseudo);
 		$this->view->display();
 	}
 	public function valideUser(){

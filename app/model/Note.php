@@ -36,6 +36,15 @@ class Note extends Model {
 		$stmt->setFetchMode(PDO::FETCH_CLASS, "Note");
 		return $stmt->fetchAll();
 	}
+	public static function getFromPseudo($pseudo) {
+		$db = Database::getInstance();
+		$sql = "SELECT * FROM Note where pseudo=:pseudo";
+		$stmt = $db->prepare($sql);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, "Note");
+		$stmt->execute(array(
+			":pseudo" => $pseudo));
+		return $stmt->fetchAll();
+	}
 }
 ?>
 

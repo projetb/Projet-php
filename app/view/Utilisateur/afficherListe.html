@@ -42,12 +42,11 @@ extract($_POST);
 				<thead>
 					<tr>
 						<th></th>
-						<th>Pseudo</th><th>E-mail</th><th>Supprimer</th><th>Valider</th>
+						<th>Pseudo</th><th>E-mail</th><th> Voir Plus</th><?php  if (isset($_SESSION['pseudo']) && $_SESSION['level']=='admin'){ echo "<th>Supprimer</th><th>Valider</th>"; }?> 
 					</tr>
 				</thead>
 				<tbody>
-					<?php  if (isset($_SESSION['pseudo']) && $_SESSION['level']=='admin'){
-						foreach($this->list as $user) : ?>
+						<?php foreach($this->list as $user) : ?>
 					<tr>
 						<td  class="cadre"<?php if ($user->valide==1){
 						echo "bgcolor='green'";
@@ -65,19 +64,20 @@ extract($_POST);
 						</td>
 						<td><?php echo $user->email;?>
 						</td>
+						<td><a href='<?php echo BASE_URL."/Utilisateur/afficher/".$user->pseudo;?>' 
+								class="btn btn-info"><i class="icon icon-search"><i></a></td>
+						
+				<?php  if (isset($_SESSION['pseudo']) && $_SESSION['level']=='admin'){ ?>
 						<td>
 						<a href='<?php echo BASE_URL."/Utilisateur/supUser/".$user->pseudo;?>' 
 							 class="btn btn-danger"><i class="icon icon-remove"></i></a></td>
 						<td>
 		<?php if($user->valide==false){ ?>
 							<a href='<?php echo BASE_URL."/Utilisateur/valideUser/".$user->pseudo;?>' 
-								 class="btn btn-success"><i class="icon icon-ok"></i></a></td>
+								 class="btn btn-success"><i class="icon icon-ok"></i></a></td>  <?php } ?>
 					</tr>
-					<?php } endforeach; } 
-					else {
-								echo "<h4> Vous devez être connecté en tant qu'ADMIN pour consulter les membres (Redirection) </h4>";
-									header('Refresh: 2;/public/Connexion');
-						}?>
+					<?php } endforeach; 
+?>
 				</tbody>
 			</table>
 			<footer>

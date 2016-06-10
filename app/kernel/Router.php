@@ -97,6 +97,11 @@ class Router {
 				 $result["action"] = "afficherListe";
 			  }
 			}
+				if ((count($parts) == 3 ) && ($parts[0] == "Utilisateur") && ($parts[1] == "afficher")) {
+					$result["controller"] = "Utilisateur";
+					$result["action"] = "afficherUser";
+					$result["params"]["pseudo"] = $parts[2];
+				}
 			if ((count($parts) == 3 ) && ($parts[0] == "Utilisateur") && ($parts[1] == "valideUser")) {
 					$result["controller"] = "Utilisateur";
 					$result["action"] = "valideUser";

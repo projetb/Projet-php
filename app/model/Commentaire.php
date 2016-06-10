@@ -44,6 +44,14 @@ class Commentaire extends Model {
 		$stmt->setFetchMode(PDO::FETCH_CLASS, "Commentaire");
 		return $stmt->fetchAll();
 	}
+	public static function getListFromPseudo($pseudo){
+		$db = Database::getInstance();
+		$sql = "Select * FROM Commentaire WHERE pseudo = :pseudo";
+		$stmt = $db->prepare($sql);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, "Commentaire");
+		$stmt->execute(array(":pseudo" => $pseudo));
+		return $stmt->fetchAll();
+	}
 	public static function supCom($id){
 		$db = Database::getInstance();
 		$sql = "DELETE FROM Commentaire WHERE idCommentaire = :id";

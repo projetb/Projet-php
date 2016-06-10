@@ -1,0 +1,109 @@
+<?php
+session_start();
+?>
+<!DOCTYPE html>
+<html> <!-- J'ai modfier afficherListe pour tester aec album-->
+	<head>
+		<meta charset="utf-8"/>
+	<link href="<?php echo BASE_URL.'/css/bootstrap.css';?>" rel="stylesheet" />
+		<title><?php echo $this->utilisateur->pseudo;?></title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="page-header">
+				<ul class="nav nav-pills pull-right">
+					<li> <a href="<?php echo BASE_URL.'/Inscription';?>">Inscription </a></li>
+					<li> <a href="<?php echo BASE_URL.'/Album';?>">Liste des albums</a></li>
+					<li> <a href="<?php echo BASE_URL.'/Artiste';?>">Liste des artistes</a></li>
+					<?php
+					 if(isset($_SESSION['level']) && $_SESSION['level']=='admin'){
+					?>
+					<li> <a href="<?php echo BASE_URL.'/Utilisateur';?>">Membres</a></li>
+					<?php } ?>
+					<li> <?php 
+								if(isset($_SESSION['pseudo'])){
+											echo "Bienvenue ".$_SESSION['pseudo']."(".$_SESSION['level'].")";?>
+				<form method="post" action="<?php echo BASE_URL.'/Deconnexion';?>">
+   <input type='submit' class="btn btn-info" value='Se déconnecter'/></form>
+								<?php }
+								else { ?>
+											<li> <a href="<?php echo BASE_URL.'/Connexion';?>">Connexion</a></li> <?php
+								}
+								?>
+						</li>
+				</ul>
+				<h1>
+			<?php echo $this->utilisateur->pseudo;?> </h1>
+			</div>
+			<p class="lead">
+		</p>
+		<table class="table table-stripped">
+			<tr><td>Pseudo:</td><td><?php echo $this->utilisateur->pseudo;?></td></tr>
+			<tr><td>Email:</td><td><?php echo $this->utilisateur->email;?></td></tr>
+      <tr><td>Nom:</td><td><?php echo $this->utilisateur->nom;?></td></tr>
+      <tr><td>Prenom:</td><td><?php echo $this->utilisateur->prenom;?></td></tr>
+  </table>
+    <br>
+    
+    <table class="table table-stripped">
+				<thead> <h2> Liste des notes de <?php echo $this->utilisateur->pseudo; ?></h2>
+					<tr>
+						<th></th><th>Titre</th><th>Date</th><th>Note</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php if (isset($_SESSION['pseudo'])){
+   foreach($this->listNote as $note) : ?>
+					<tr>
+						<td>
+						<i class ="icon icon-star"></i>
+						</td>
+						<td>
+							<?php echo Album::getFromId($note->album)->titre;?>
+						</td>
+						<td><?php echo $note->dateNote;?>
+						</td>
+						<td><?php echo $note->valeur;?></td>
+							</tr>
+							<!--a href="contact/afficher/<?php echo $contact->id;?>"></a></td><td><?php echo $contact->prenom." ".$contact->nom;?></td></tr-->
+					<?php  endforeach; }
+					else {
+echo "<h4> Vous devez être connecté pour consuler les albums (Redirection) </h4>";
+	header('Refresh: 2;/public/Connexion');
+							}?>
+				</tbody>
+			</table>
+     <table class="table table-stripped">
+				<thead> <h2> Liste des Commentaire de <?php echo $this->utilisateur->pseudo; ?></h2>
+					<tr>
+						<th></th><th>Album</th><th>Date</th><th>Texte</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php if (isset($_SESSION['pseudo'])){
+   foreach($this->listCom as $com) : ?>
+					<tr>
+						<td>
+						<i class ="icon-pencil"></i>
+						</td>
+						<td>
+							<?php echo Album::getFromId($com->album)->titre;?>
+						</td>
+						<td><?php echo $com->dateCom;?>
+						</td>
+						<td><?php echo $com->texte;?></td>
+							</tr>
+							<!--a href="contact/afficher/<?php echo $contact->id;?>"></a></td><td><?php echo $contact->prenom." ".$contact->nom;?></td></tr-->
+					<?php  endforeach; } ?>
+       
+    </table>
+    </tbody>
+			<footer>
+				<hr>
+				<div class="text-center">
+					<a href="<?php echo BASE_URL;?>">page d'accueil</a>
+				</div>
+			</footer>
+		</div>
+	</body>
+</html>
