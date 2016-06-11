@@ -106,7 +106,7 @@ extract($_POST);
 						<td><?php echo $album->dateSortie;?>
 						</td>
 						<td><?php echo $album->noteGeneral;?></td>
-						<td><?php echo $album->idArtiste?></td>
+						<td><?php	echo Artiste::getFromId($album->idArtiste)->pseudoArtiste; ?></td>
 						<td><a href='<?php echo BASE_URL."/Album/afficher/".$album->titre;?>' 
 								class="btn btn-info"><i class="icon icon-search"><i></a></td>
 							</tr>

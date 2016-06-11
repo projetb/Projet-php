@@ -4,7 +4,7 @@ class Artiste extends Model {
 	public $idArtiste, $pseudoArtiste, $description,$profil,$ajouterPar;
 	public static function setFromId( $id ,$data) {                                                                                                  
 		$db = Database::getInstance();
-		$sql = "UPDATE Artiste set id=:id,pseudoArtiste=:pseudoArtiste,description=:description ,profil=:profil,ajouterPar=:ajouterPar WHERE id = :id";
+		$sql = "UPDATE Artiste set idArtiste=:id,pseudoArtiste=:pseudoArtiste,description=:description ,profil=:profil,ajouterPar=:ajouterPar WHERE id = :id";
 		$stmt = $db->prepare($sql);
 		//$stmt->setFetchMode(PDO::FETCH_CLASS, "Contact");
 		return $stmt->execute(array(
@@ -18,7 +18,7 @@ class Artiste extends Model {
 	
 	public static function getFromId( $id ) {
 		$db = Database::getInstance();
-		$sql = "SELECT * FROM Artiste WHERE id = :id";
+		$sql = "SELECT * FROM Artiste WHERE idArtiste = :id";
 		$stmt = $db->prepare($sql);
 		$stmt->setFetchMode(PDO::FETCH_CLASS, "Artiste");
 		$stmt->execute(array(":id" => $id));
