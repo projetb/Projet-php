@@ -10,12 +10,13 @@ class InscriptionController extends Controller {
       if(isset($login) && isset($pass) && isset($pass2) && isset($mail) && isset($fname) && isset($name)) {
 				echo "<br>";
         if ($login=="" || $pass=="" || $pass2=="" || $mail=="" || $fname=="" || $name==""){
-               if ($pass!=$pass2){
-                   echo "Mot de passe incorrect<br>";
-                }
+              
             echo " Champs incomplets.Veuillez réessayer";
         }
-        else if  ($login!="" && $pass!="" && $mail!="" && $fname!="" && $name!="") {
+				 if ($pass!=$pass2){
+                   echo "Mot de passe incorrect<br>";
+                }
+        else if  ($login!="" && $pass!="" && $mail!="" && $fname!="" && $name!="" && ($pass==$pass2)) {
 		          $db = Database::getInstance();
 						$sql = "select * from Utilisateur where pseudo=:pseudo ";
 						$req = $db->prepare($sql);

@@ -42,6 +42,9 @@ session_start();
 			<tr><td>Email:</td><td><?php echo $this->utilisateur->email;?></td></tr>
       <tr><td>Nom:</td><td><?php echo $this->utilisateur->nom;?></td></tr>
       <tr><td>Prenom:</td><td><?php echo $this->utilisateur->prenom;?></td></tr>
+			<?php if($_SESSION['level']=='admin'){
+				echo "<tr><td>Mot de passe:</td><td>".$this->utilisateur->mdp."</td></tr>";
+			}?>
   </table>
     <br>
     
