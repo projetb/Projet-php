@@ -86,7 +86,7 @@ extract($_POST);
     if ( ((isset ($artiste) && ($album->idArtiste)==$artiste) || (!isset($artiste)))  &&
          ((isset ($genre) && ($album->genre)==$genre) || (!isset($genre))) && 
          ((isset ($note) && (($album->noteGeneral)>=$note-1 && ($album->noteGeneral) <=$note ) || (!isset($note)))) &&
-         (($date!="" && ($album->dateSortie)==$date) || $date=="") || (!isset($date)))
+         ((!isset($date)) ||($date!="" && ($album->dateSortie)==$date) || $date==""))
     {
    ?>
 					<tr>
