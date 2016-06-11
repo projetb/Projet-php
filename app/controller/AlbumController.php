@@ -4,6 +4,8 @@ class AlbumController extends Controller {
 	
 	public function afficherListe(){
 		$this->view->list = Album::getList();
+		$this->view->listArtiste=Artiste::getList();
+		$this->view->listGenre=Album::getListGenre();
 		$this->view->display(); 
 
 	}

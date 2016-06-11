@@ -1,5 +1,6 @@
 <?php
 session_start();
+extract($_POST);
 ?>
 <!DOCTYPE html>
 <html> <!-- J'ai modfier afficherListe pour tester aec album-->
@@ -35,37 +36,34 @@ session_start();
 				<h1>Listes des albums</h1>
 			</div>
 			<h2>Recherche</h2>
-			<form action="<?php echo BASE_URL.'/Album/rechercher';?>" method="post">
+			<form action="<?php echo BASE_URL.'/Album';?>" method="post">
 			<table class="table table-stripped">
 				<tr>
 					<td><label for="artiste"><strong>Artiste :</strong></label>
 						<select name="artiste">
-							<option>Tous</option>
-							<?php foreach ($this->list as $artiste) : 
-								echo "<option>".$artiste->pseudoArtiste."</option>";
+							<option selected="selected" disabled="disabled" >Tous</option>
+							<?php foreach ($this->listArtiste as $art) : 
+								echo "<option value=".$art->idArtiste.">".$art->pseudoArtiste."</option>";
 							endforeach;	?>
 						</select>
 					</td>
-					<td><label for="note"><strong>Note :</strong></label>
+					<td><label for="note"><strong>Note entre :</strong></label>
 						<select name="note">
-							<option>Tous</option>
-							<option>0 ou +</option>
-							<option>1 ou +</option>
-							<option>2 ou +</option>
-							<option>3 ou +</option>
-							<option>4 ou +</option>
-							<option>5</option>
+							<option selected="selected" disabled="disabled">Tous</option>
+							<option value=1>0 et 1</option>
+							<option value=2>1 et 2</option>
+							<option value=3>2 et 3</option>
+							<option value=4>3 et 4</option>
+							<option value=5>4 et 5</option>
+							<option value=6>5</option>
 						</select>
 					</td>
 					<td><label for="genre"><strong>Genre :</strong></label>
 						<select name="genre">
-							<option>Tous</option>
-							<option>Rap</option>
-							<option>Pop</option>
-							<option>Electro</option>
-							<option>Chill</option>
-							<option>Rock</option>
-							<option>Jazz</option>
+							<option  selected="selected" disabled="disabled">Tous</option>
+						<?php foreach ($this->listGenre as $album) : 
+								echo "<option value=".$album->genre.">".$album->genre."</option>";
+							endforeach;	?>
 						</select>
 					</td>
 					<td><label for="date"><strong>Sortie le :</strong></label>
@@ -84,7 +82,13 @@ session_start();
 				</thead>
 				<tbody>
 					<?php if (isset($_SESSION['pseudo'])){
-   foreach($this->list as $album) : ?>
+   foreach($this->list as $album) : 
+    if ( ((isset ($artiste) && ($album->idArtiste)==$artiste) || (!isset($artiste)))  &&
+         ((isset ($genre) && ($album->genre)==$genre) || (!isset($genre))) && 
+         ((isset ($note) && (($album->noteGeneral)>=$note-1 && ($album->noteGeneral) <=$note ) || (!isset($note)))) &&
+         (($date!="" && ($album->dateSortie)==$date) || $date=="") || (!isset($date)))
+    {
+   ?>
 					<tr>
 						<td>
 						<i class ="icon icon-music"></i>
@@ -107,7 +111,7 @@ session_start();
 								class="btn btn-info"><i class="icon icon-search"><i></a></td>
 							</tr>
 							<!--a href="contact/afficher/<?php echo $contact->id;?>"></a></td><td><?php echo $contact->prenom." ".$contact->nom;?></td></tr-->
-					<?php endforeach; }
+					<?php } endforeach; }
 					else {
 echo "<h4> Vous devez être connecté pour consuler les albums (Redirection) </h4>";
 	header('Refresh: 2;/public/Connexion');
