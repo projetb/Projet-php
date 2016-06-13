@@ -17,8 +17,8 @@ class Router {
 				  $result['action'] = "afficherListe";
 			  }
 			  if ((count($parts) == 2) && ($parts[1] == "afficher")){
-            $result["controller"] = "Commentaire";
-            $result["action"] = "afficherListe";
+            $result["controller"] = "Album";
+            $result["action"] = "description";
             //$result["params"]["slug"] = $parts[1];            
 			  }
 				if ((count($parts) == 2) && ($parts[1] == "ajouter")){
@@ -30,36 +30,25 @@ class Router {
 				  && ($parts[1] == "afficher")
 				  && ($parts[0] == "Album")){
 
-					  $result["controller"] = "Commentaire";
-					  $result["action"] = "afficherListe";
+					  $result["controller"] = "Album";
+					  $result["action"] = "description";
 					  $result["params"]["id"] = $parts[2];            
 				  }
 				if ( (count($parts) == 4) 
 				  && ($parts[2] == "note")
 				  && ($parts[0] == "Album")){
 
-					  $result["controller"] = "Commentaire";
+					  $result["controller"] = "Album";
 					  $result["action"] = "Note";
 						$result["params"]["album"] = $parts[1]; 
 					  $result["params"]["note"] = $parts[3];            
 				  }
 			
 				}
-				
-			  //
 					if ((count($parts) == 3 ) && ($parts[0] == "Commentaire") && ($parts[1] == "supCom")) {
-					$result["controller"] = "Commentaire";
+					$result["controller"] = "Album";
 					$result["action"] = "supCom";
 					$result["params"]["id"] = $parts[2];
-
-			  if ((count($parts) == 3) && ($parts[1] == "modifier")){
-
-				  $result["controller"] = "Album";
-				  $result["action"] = "modifierAlbum";
-				  $result["params"]["id"]= $parts[2];
-				  $result["params"]["post"]= $_POST;
-			  }
-			  //
 		  }
 		if($parts[0] == "Inscription")  {
 			if (count($parts) == 1){
