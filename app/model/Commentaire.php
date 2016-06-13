@@ -60,6 +60,15 @@ class Commentaire extends Model {
 		$stmt->execute(array(":id" => $id));
 		return $stmt->fetch();
 	}
+	
+	public static function getListFromDate($date){
+		$db = Database::getInstance();
+		$sql = "Select * FROM Commentaire WHERE dateCom >= :date";
+		$stmt = $db->prepare($sql);
+		$stmt->setFetchMode(PDO::FETCH_CLASS, "Commentaire");
+		$stmt->execute(array(":date" => $date));
+		return $stmt->fetchAll();
+	}
 }
 ?>
 
