@@ -86,7 +86,7 @@ class AlbumController extends Controller {
 				":album"=>$this->album->idAlbum,
 				":pseudo"=>$_SESSION['pseudo']));
 	  		return $stmt->fetch();
-        }   
+       }   
   }
 	public function supCom(){
 		$id=$this->route["params"]["id"];

@@ -38,6 +38,24 @@
 		</p>
 			
 								<?php if (isset($_SESSION['pseudo'])){ ?>
+			<?php
+    if(isset($_COOKIE["last_visit"]))
+    {
+        echo 'Derni&#232re visite : '; // &#232 = "è"
+        echo $_COOKIE['last_visit'];
+    }
+    else
+    {
+        echo "C'est la première fois que vous visitez cette page";
+    }
+		?>
+		<?php
+    $jour = date('d'); //le jour
+    $mois = date('m'); //le mois
+    $année = date('Y'); //l'année
+    $date = ''. $jour .'/'. $mois .'/'. $année .''; //la date formatée
+    setcookie('last_visit', $date, time() + 31*24*3600, null, null, false, true); //la création du cookie (avec httpOnly activé)
+		?>
 				<thead> <h2> Les meilleurs albums: </h2>
 			<div class="podium">
 		<div class="top1">
