@@ -19,6 +19,7 @@ session_start();
 					?>
 					<li> <a href="<?php echo BASE_URL.'/Utilisateur';?>">Membres</a></li>
 					<?php } ?>
+					<li> <a href="<?php echo BASE_URL.'/About';?>">A propos</a></li>
 					<li> <?php 
 								if(isset($_SESSION['pseudo'])){
 											echo "Bienvenue ".$_SESSION['pseudo']."(".$_SESSION['level'].")";?>
