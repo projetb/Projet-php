@@ -118,6 +118,12 @@ class Router {
 				  $result['action'] = "Deconnexion";
 			  }
 		}
+		if($parts[0] == "About")  {
+			  if (count($parts) == 1){
+				  $result["controller"] = "About";
+				  $result['action'] = "rapport";
+			  }
+		}
 	  }
 	  return $result;
    }

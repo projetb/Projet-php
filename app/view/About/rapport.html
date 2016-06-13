@@ -1,0 +1,123 @@
+<?php session_start();?>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<link href="<?php echo BASE_URL.'/css/bootstrap.css';?>" rel="stylesheet" />
+		<title>A propos</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="page-header">
+				<ul class="nav nav-pills pull-right">
+					<li> <a href="<?php echo BASE_URL.'/Inscription';?>">Inscription </a></li>
+					<li> <a href="<?php echo BASE_URL.'/Album';?>">Liste des albums</a></li>
+					<li> <a href="<?php echo BASE_URL.'/Artiste';?>">Liste des artistes</a></li>
+					<?php
+					 if(isset($_SESSION['pseudo'])){
+					?>
+					<li> <a href="<?php echo BASE_URL.'/Utilisateur';?>">Membres</a></li>
+					<li> <a href="<?php echo BASE_URL.'/About';?>">A propos</a></li>
+					<?php } ?>
+					<li> <?php 
+								if(isset($_SESSION['pseudo'])){
+										echo "Bienvenue ".$_SESSION['pseudo']."(".$_SESSION['level'].")";?>
+				<form method="post"  action="<?php echo BASE_URL.'/Deconnexion';?>">
+   <input type='submit' class="btn btn-info" class="btn btn-info" value='Se déconnecter'/></form>
+								<?php }
+								else { ?>
+											<li> <a href="<?php echo BASE_URL.'/Connexion';?>">Connexion</a></li> <?php
+								}
+								?>
+				</ul>
+				<h3 class="muted">A propos
+			</h3>
+		</div>
+		<p class="lead">Bienvenue sur votre application de gestion de vos musiques. Dans cette section, nous allons vous parler comme vous pouvez lire ci-dessous,
+      de la répartition des tâches de travail, des fonctionalités de notre site et la relation entre ce que nous avons développé et ce qu'on a appris en cours. 
+      Tout d'abord avant de débuter, nous avons réalisé le projet au alentour des 25h réparti en une semaine.
+		</p>
+      <h2>Répartition des tâches</h2>
+      <h5>Benjamin De Castro</h5>
+      <ul>
+        <li>Listes Artistes et albums</li>
+        <li>Consulter des albums et artistes</li>
+        <li>Ajouter à la base du site un artiste ou un album</li>
+        <li>Exprimer un commentaire sur un album</li>
+        <li>Noter un album (une seul note, modifiable)</li>
+        <li>Actualité(dernier commentaire)</li>
+        <li>Le rapport</li>
+      </ul>
+      <h5>Maxime Faivre</h5>
+      <ul>
+        <li>Faire des recherches:</li>
+        <li>- sur un album, par artiste, note, date, genre</li>
+        <li>- sur un utilisateur : liste de ses commentaires, et de ses notes</li>
+        <li>Palmarès des albums</li>
+        <li>Connexion/deconnexion</li>
+        <li>La validation des inscriptions</li>
+        <li>La modération des commentaires</li>
+      </ul>
+      <h2>Fonctionnalités</h2>
+        <h5>Inscription et connexion</h5>
+        <ul>
+          <li>Possibilité de s'inscrire</li>
+          <li>Connexion/déconnexion</li>
+          <li>Possibilité de se connecter en admin ou utilisateur</li>
+        </ul>
+        <h5>Page d'accueil</h5>
+        <ul>
+          <li>Palmarès des albums (affiche les 3 meilleurs)</li>
+          <li>L'actualité (la liste des derniers commentaires postés depuis la dernière visite)</li>
+        </ul>
+        <h5>Administrateur</h5>
+        <ul>
+          <li>Modération des commentaires</li>
+          <li>Validation des inscriptions</li>
+          <li>Suppression de comptes</li>
+        </ul>
+        <h5>Albums</h5>
+        <ul>
+          <li>Consulter la liste des albums</li>
+          <li>Description détaillée de chaque album (titre, acteur, date de sortie, note, genre et pochette album)</li>
+          <li>Possibilité de commenter un album</li>
+          <li>Possibilité de noter un album</li>
+          <li>Insertion de nouveaux albums</li>
+          <li>Rechercher par artiste, note, genre et date de sortie</li>
+        </ul>
+        <h5>Artistes</h5>
+        <ul>
+          <li>Consulter la liste des artistes</li>
+          <li>Description détaillée de chaque artiste (Pseudo, description, photo et liste de ses albums)</li>
+          <li>Insertion de nouveaux artistes</li>
+        </ul>
+        <h5>Utilisateurs</h5>
+        <ul>
+          <li>Description détaillé de chaque utilisateur</li>
+          <li>Consulter les commentaires ecrit par un utilisateur</li>
+          <li>Consulter les notes données à un album par un utilisateur</li>
+        </ul>
+      <h2>Notion de cours</h2>
+        <h5>Base de donnée</h5>
+        <ul>
+          <li>Requête sql</li>
+          <li>Trigger</li>
+          <li>Création de tableau</li>
+        </ul>
+        <h5>WIM</h5>
+        <ul>
+          <li>PHP et formulaires</li>
+          <li>PDO</li>
+          <li>Cookies et sessions</li>
+          <li>MVC</li>
+        </ul>
+        <br>
+			<div class="text-center">
+				<a href="<?php echo BASE_URL;?>">page d'accueil</a>
+			</div>
+      <br>
+		</footer>
+	</div>
+</body>
+</html>
