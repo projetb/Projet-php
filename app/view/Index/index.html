@@ -18,6 +18,7 @@
 					 if(isset($_SESSION['pseudo'])){
 					?>
 					<li> <a href="<?php echo BASE_URL.'/Utilisateur';?>">Membres</a></li>
+					<li> <a href="<?php echo BASE_URL.'/About';?>">A propos</a></li>
 					<?php } ?>
 					<li> <?php 
 								if(isset($_SESSION['pseudo'])){
@@ -37,10 +38,7 @@
 		</p>
 			
 								<?php if (isset($_SESSION['pseudo'])){ ?>
-  
 				<thead> <h2> Les meilleurs albums: </h2>
- 
-			
 			<div class="podium">
 		<div class="top1">
 			<a href='<?php echo BASE_URL."/Album/afficher/".$this->list[0]->titre;?>'>
