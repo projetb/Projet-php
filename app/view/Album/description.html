@@ -84,19 +84,8 @@ session_start();
 			<table class="table table-stripped">
 				<tbody>
 					<?php if (isset($_SESSION['pseudo'])){
-					extract($_POST);
-					$date = new DateTime();
-					if (isset($commentaire)){?>
-					<tr>
-						<td><?php echo "<p class="."'commEcrit'".">".($commentaire)."</p>"."<li id="."'commEcrit'".">Ecrit par ".($_SESSION['pseudo'])." 
-					le ".$date->format('Y-m-d')."</li>";?></td>
-						<?php if ($_SESSION['level']=='admin'){ ?>
-						<td><a href='<?php echo BASE_URL."/Commentaire/supCom/".$commentaire->idCommentaire;?>' 
-												class="btn"><i class="icon icon-remove"></i></a></td>
-					<?php } ?>
-					</tr>	
-					<?php } ?>
-   <?php foreach(array_reverse($this->list) as $commentaire) : ?>
+					$listCom = Commentaire::getList();
+					foreach(array_reverse($listCom) as $commentaire) : ?>
 					<?php if ($commentaire->album==$this->album->idAlbum){ ?>
 					<tr>
 						<td><?php echo "<p class="."'commEcrit'".">".($commentaire->texte)."</p>"."<li id="."'commEcrit'".">Ecrit par ".($commentaire->pseudo)." 

@@ -38,14 +38,16 @@
 		</p>
 		<thead> <h2> Actualité: </h2>
 		<table class="table table-stripped">
-		<?php if (isset($_SESSION['pseudo'])){
+		<?php if (isset($_SESSION['pseudo'])){ ?>
+		<?php
     if(isset($_COOKIE["last_visit"]))
     {
 				$lista=Commentaire::getListFromDate($_COOKIE['last_visit']);
-				foreach(array_reverse($lista) as $commentaire) :?>
+				foreach(array_reverse($lista) as $commentaire) :
+					$album=Album::getFromId( $commentaire->album); ?>
 					<tr>
 						<td><?php echo "<p class="."'commEcrit'".">".($commentaire->texte)."</p>"."<li id="."'commEcrit'".">Ecrit par ".($commentaire->pseudo)." 
-					le ".($commentaire->dateCom)."</li>";?></td>
+					le ".($commentaire->dateCom)." sur l'album ".$album->titre."</li>";?></td>
 						<?php if ($_SESSION['level']=='admin'){ ?>
 						<td><a href='<?php echo BASE_URL."/Commentaire/supCom/".$commentaire->idCommentaire;?>' 
 												class="btn"><i class="icon icon-remove"></i></a></td>
@@ -54,14 +56,16 @@
 		<?php endforeach;?>
 		</table>
     <?php }
-    else
-    {
-        echo "C'est la première fois que vous visitez cette page";
-    }
     $jour = date('d'); //le jour
     $mois = date('m'); //le mois
-    $année = date('Y'); //l'année
-    $date = $année .'-'. $mois .'-'. $jour; //la date formatée
+    $annee = date('Y'); //l'année
+		$heure = date('H')+6; //heure
+		if ($heure>24){
+			$heure=$heure-24;
+		}
+		$minute = date('i'); //minute
+		$seconde = date('s');
+    $date = $annee .'-'. $mois .'-'. $jour .' '. $heure .':'. $minute .':' . $seconde; //la date formatée
     setcookie('last_visit', $date, time() + 31*24*3600, null, null, false, true);
 		?>
 				<thead> <h2> Les meilleurs albums: </h2>
