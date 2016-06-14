@@ -73,7 +73,7 @@ class Album extends Model {
 		$stmt->execute(array(":id" => $id));
 		return $stmt->fetch();
 	}
-	
+	/* Maintenan inutile , utilisation de 2 trigger (after insert et after update)
 	public static function noteGeneral($id){
 		$db = Database::getInstance();
 		$sql = "SELECT AVG(valeur) FROM Note WHERE album=:album;";
@@ -88,7 +88,7 @@ class Album extends Model {
 		//$stmt->setFetchMode(PDO::FETCH_CLASS, "Album");
 		$stmt->execute(array(":album" => $id->idAlbum,":noteGeneral" =>$res['AVG(valeur)']));
 	}
-	
+	*/ 
 	
 }
 ?>
