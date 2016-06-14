@@ -30,7 +30,7 @@ class AlbumController extends Controller {
         }
         else if  ($titre!="" && $artiste!="" && $genre!="" && $date!="") {
 		        $db = Database::getInstance();
-						$sql = "select * from Album where titre=:titre and idArtiste=:id";
+						$sql = "select * from Album natural join Artiste where titre=:titre and pseudoArtiste=:id";
 						$req = $db->prepare($sql);
 						$req->execute(array(":titre"=>$titre,":id"=>$artiste));
 						$array = $req->fetchALL();
