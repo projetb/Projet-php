@@ -36,12 +36,12 @@
 		</div>
 		<p class="lead">Bienvenue sur votre application de gestion de vos musiques.
 		</p>
+		<?php if (isset($_SESSION['pseudo'])){?>
 		<thead> <h2> Actualité: </h2>
-		<table class="table table-stripped">
-		<?php if (isset($_SESSION['pseudo'])){ ?>
-		<?php
-    if(isset($_COOKIE["last_visit"]))
-    {
+		
+    <?php if(isset($_COOKIE["last_visit"])){ ?>
+			<table class="table table-stripped">
+				<?php
 				$lista=Commentaire::getListFromDate($_COOKIE['last_visit']);
 				foreach(array_reverse($lista) as $commentaire) :
 					$album=Album::getFromId( $commentaire->album); ?>
