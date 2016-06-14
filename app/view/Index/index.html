@@ -24,7 +24,7 @@
 								if(isset($_SESSION['pseudo'])){
 										echo "Bienvenue ".$_SESSION['pseudo']."(".$_SESSION['level'].")";?>
 				<form method="post"  action="<?php echo BASE_URL.'/Deconnexion';?>">
-   <input type='submit' class="btn btn-info" class="btn btn-info" value='Se déconnecter'/></form>
+  			 <input type='submit' class="btn btn-info" class="btn btn-info" value='Se déconnecter'/></form>
 								<?php }
 								else { ?>
 											<li> <a href="<?php echo BASE_URL.'/Connexion';?>">Connexion</a></li> <?php
@@ -36,12 +36,12 @@
 		</div>
 		<p class="lead">Bienvenue sur votre application de gestion de vos musiques.
 		</p>
-		<?php if (isset($_SESSION['pseudo'])){?>
-		<thead> <h2> Actualité: </h2>
-		
-    <?php if(isset($_COOKIE["last_visit"])){ ?>
-			<table class="table table-stripped">
-				<?php
+			<h2> Actualité: </h2>
+		<table class="table table-stripped">
+		<?php if (isset($_SESSION['pseudo'])){ ?>
+		<?php
+    if(isset($_COOKIE["last_visit"]))
+    {
 				$lista=Commentaire::getListFromDate($_COOKIE['last_visit']);
 				foreach(array_reverse($lista) as $commentaire) :
 					$album=Album::getFromId( $commentaire->album); ?>
@@ -68,32 +68,30 @@
     $date = $annee .'-'. $mois .'-'. $jour .' '. $heure .':'. $minute .':' . $seconde; //la date formatée
     setcookie('last_visit', $date, time() + 31*24*3600, null, null, false, true);
 		?>
-				<thead> <h2> Les meilleurs albums: </h2>
-			<div class="podium">
+			 <h2> Les meilleurs albums: </h2>
+	<div class="podium">
 		<div class="top1">
 			<a href='<?php echo BASE_URL."/Album/afficher/".$this->list[0]->titre;?>'>
 			<img class="img-rounded" width="200" height="200" src="<?php echo $this->list[0]->pochette;?>">
-			<?php echo "1)".$this->list[0]->titre;?>
-				</div></a>
-		
-	<div class="top2">							
+			<?php echo "1)".$this->list[0]->titre;?></a>
+		</div>
+		<div class="top2">							
 						<a href='<?php echo BASE_URL."/Album/afficher/".$this->list[1]->titre;?>'>	
-		<img class="img-rounded" width="200" height="200" src="<?php echo $this->list[1]->pochette;?>">
+						<img class="img-rounded" width="200" height="200" src="<?php echo $this->list[1]->pochette;?>">
 			<?php echo "2)".$this->list[1]->titre;?></a>
-				</div>
+		</div>
 				
-	<div class="top3">
-				
-			<a href='<?php echo BASE_URL."/Album/afficher/".$this->list[2]->titre;?>'><img class="img-rounded" width="200" height="200" src="<?php echo $this->list[2]->pochette;?>">
+		<div class="top3">	
+			<a href='<?php echo BASE_URL."/Album/afficher/".$this->list[2]->titre;?>'>
+			<img class="img-rounded" width="200" height="200" src="<?php echo $this->list[2]->pochette;?>">
 			<?php echo "3)".$this->list[2]->titre;?></a>
-				</div>
-			</div>
+		</div>
+	</div>
 			<?php } ?>
-			
+		<footer>
 			<div class="text-center">
 				<a href="<?php echo BASE_URL;?>">page d'accueil</a>
 			</div>
 		</footer>
-	</div>
 </body>
 </html>
