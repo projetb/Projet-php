@@ -38,8 +38,7 @@
 		</p>
 		<thead> <h2> Actualité: </h2>
 		<table class="table table-stripped">
-		<?php if (isset($_SESSION['pseudo'])){ ?>
-		<?php
+		<?php if (isset($_SESSION['pseudo'])){
     if(isset($_COOKIE["last_visit"]))
     {
 				$lista=Commentaire::getListFromDate($_COOKIE['last_visit']);
@@ -59,8 +58,6 @@
     {
         echo "C'est la première fois que vous visitez cette page";
     }
-		?>
-		<?php
     $jour = date('d'); //le jour
     $mois = date('m'); //le mois
     $année = date('Y'); //l'année
