@@ -22,28 +22,27 @@
 					<li> <a href="<?php echo BASE_URL.'/About';?>">A propos</a></li>
 					<li> <?php 
 								if(isset($_SESSION['pseudo'])){
-											echo "Bienvenue ".$_SESSION['pseudo']; ?>
+											echo "Bienvenue ".$_SESSION['pseudo']."(".$_SESSION['level'].")"; ?>
+					</li>
 				<form method="post" action="<?php echo BASE_URL.'/Deconnexion';?>">
-   <input type='submit' class="btn btn-info" value='Se déconnecter'/></form>
+   				<input type='submit' class="btn btn-info" value='Se déconnecter'/></form>
 								<?php }
 								else { ?>
-											<li> <a href="<?php echo BASE_URL.'/Connexion';?>">Connexion</a></li> <?php
+									<li> <a href="<?php echo BASE_URL.'/Connexion';?>">Connexion</a></li> <?php
 								}
 								?>
-						
-						</li>
 				</ul>
 				<h3 class="muted">Gestion des musiques
-			</h3>
+				</h3>
 		</div>
 		<p class="lead">  Vous avez donné un <?php echo $this->note;?>/5 à l'album <?php echo $this->album;?> !!! Redirection..
 			<?php 
-header('Refresh: 2;/public/Album/afficher/'.$this->album); ?>
+				header('Refresh: 2;/public/Album/afficher/'.$this->album); ?>
 		</p>
-			<hr>
-			<div class="text-center">
-				<a href="<?php echo BASE_URL;?>">page d'accueil</a>
-			</div>
+			<footer>
+				<div class="text-center">
+					<a href="<?php echo BASE_URL;?>">page d'accueil</a>
+				</div>
 		</footer>
 	</div>
 </body>
