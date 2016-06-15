@@ -32,7 +32,6 @@ extract($_POST);
 											<li> <a href="<?php echo BASE_URL.'/Connexion';?>">Connexion</a></li> <?php
 								}
 								?>
-						</li>
 				</ul>
 				<h1>Listes des albums</h1>
 			</div>
@@ -70,8 +69,7 @@ extract($_POST);
 					<td><label for="date"><strong>Sortie le :</strong></label>
 					<input type="date" name="date" id="date"/></td>	
 				</tr>
-				<td><input type="submit" class="btn btn-info" name="recherche" value="Rechercher"/></td>
-				
+				<tr><td><input type="submit" class="btn btn-info" name="recherche" value="Rechercher"/></td></tr>
 			</table>
 			</form>
 			<br><br>
@@ -112,15 +110,12 @@ extract($_POST);
 								class="btn btn-info"><i class="icon icon-search"><i></a></td>
 							</tr>
 							<!--a href="contact/afficher/<?php echo $contact->id;?>"></a></td><td><?php echo $contact->prenom." ".$contact->nom;?></td></tr-->
-					<?php } endforeach; }
-					else {
-echo "<h4> Vous devez être connecté pour consuler les albums (Redirection) </h4>";
-	header('Refresh: 2;/public/Connexion');
-							}?>
+					<?php } endforeach; } ?>
+					
 				</tbody>
 			</table>
 			<footer>
-				<hr><?php if(isset($_SESSION['pseudo'])) {?>
+				<?php if(isset($_SESSION['pseudo'])) {?>
 				<div class="text-right">
 				<form method="post" action="<?php echo BASE_URL.'/Album/ajouter';?>">
 				<input type='submit' class="btn btn-info row-fluid" value='Ajouter un album'/>
@@ -130,7 +125,6 @@ echo "<h4> Vous devez être connecté pour consuler les albums (Redirection) </h
 				<div class="text-center">
 					<a href="<?php echo BASE_URL;?>">page d'accueil</a>
 				</div>
-			
 			</footer>
 		</div>
 	</body>

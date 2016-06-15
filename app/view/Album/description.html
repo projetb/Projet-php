@@ -34,7 +34,7 @@ session_start();
 						</li>
 				</ul>
 				<h1><?php if(($this->album->pochette)!=null){?>
-						<img class="img-rounded" width="60" height="60" src="<?php echo $this->album->pochette;?>">
+						<img class="img-rounded" width="60" height="60" alt="" src="<?php echo $this->album->pochette;?>">
 								<?php }; ?>
 			<?php echo $this->album->titre;?> </h1>
 			</div>
@@ -104,7 +104,6 @@ echo "<h4> Vous devez être connecté pour consuler les albums (Redirection) </h
 				</tbody>
 			</table>
 			<footer>
-				<hr>
 				<div class="text-center">
 					<a href="<?php echo BASE_URL;?>">page d'accueil</a>
 				</div>
