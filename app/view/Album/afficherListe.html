@@ -110,8 +110,11 @@ extract($_POST);
 								class="btn btn-info"><i class="icon icon-search"><i></a></td>
 							</tr>
 							<!--a href="contact/afficher/<?php echo $contact->id;?>"></a></td><td><?php echo $contact->prenom." ".$contact->nom;?></td></tr-->
-					<?php } endforeach; } ?>
-					
+					<?php } endforeach; }
+     			else {
+ 						echo "<h4> Vous devez être connecté pour consuler les albums (Redirection) </h4>";
+  					header('Refresh: 2;/public/Connexion');
+       		}?>
 				</tbody>
 			</table>
 			<footer>

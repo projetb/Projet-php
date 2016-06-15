@@ -126,7 +126,7 @@ class AlbumController extends Controller {
 			":pseudo"=>$_SESSION['pseudo'],
 			":album"=>$idAlbum->idAlbum));	
 		}
-		// Inutile , utilisation de 2 trigger Album::noteGeneral($idAlbum);
+		//Album::noteGeneral($idAlbum);
 		$this->view->display();
 		return $stmt->fetch();
 	}
