@@ -6,7 +6,6 @@ class Commentaire extends Model {
 		$db = Database::getInstance();
 		$sql = "UPDATE Commentaire set texte=:texte,dateCom=:dateCom,visible=visible ,album=:album WHERE idCommentaire = :idCommentaire";
 		$stmt = $db->prepare($sql);
-		//$stmt->setFetchMode(PDO::FETCH_CLASS, "Contact");
 		return $stmt->execute(array(
 			":idCommentaire" => $id,
 			":texte"=>$data['texte'],

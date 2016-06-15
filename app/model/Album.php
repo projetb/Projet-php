@@ -13,7 +13,6 @@ class Album extends Model {
 		pochette=:pochette,
 		WHERE id = :id";
 		$stmt = $db->prepare($sql);
-		//$stmt->setFetchMode(PDO::FETCH_CLASS, "Contact");
 		return $stmt->execute(array(
 			":id" => $id,
 			":titre"=>$data['titre'],
@@ -22,7 +21,6 @@ class Album extends Model {
 			":idArtiste"=>$data['idArtiste'],
 			":pochette"=>$data['pochette'],
       ":noteGeneral"=>$data['noteGeneral']));
-		//return $stmt->fetch();
 	}
 
 	public static function getFromId( $id ) {
@@ -73,22 +71,5 @@ class Album extends Model {
 		$stmt->execute(array(":id" => $id));
 		return $stmt->fetch();
 	}
-	/* Maintenan inutile , utilisation de 2 trigger (after insert et after update)
-	public static function noteGeneral($id){
-		$db = Database::getInstance();
-		$sql = "SELECT AVG(valeur) FROM Note WHERE album=:album;";
-		$stmt = $db->prepare($sql);
-		$stmt->setFetchMode(PDO::FETCH_ASSOC);
-		$stmt->execute(array(":album" => $id->idAlbum));
-		$res=$stmt->fetch();
-		//print_r($res);
-		//echo "  ".$res['AVG(valeur)'];
-		$sql = "UPDATE Album set noteGeneral=:noteGeneral WHERE idAlbum=:album;";
-		$stmt = $db->prepare($sql);
-		//$stmt->setFetchMode(PDO::FETCH_CLASS, "Album");
-		$stmt->execute(array(":album" => $id->idAlbum,":noteGeneral" =>$res['AVG(valeur)']));
-	}
-	*/ 
-	
 }
 ?>

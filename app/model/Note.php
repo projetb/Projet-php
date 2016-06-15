@@ -6,7 +6,6 @@ class Note extends Model {
 		$db = Database::getInstance();
 		$sql = "UPDATE Note set valeur=:valeur,dateNote=:dateNote WHERE pseudo = :pseudo AND album= :album";
 		$stmt = $db->prepare($sql);
-		//$stmt->setFetchMode(PDO::FETCH_CLASS, "Contact");
 		return $stmt->execute(array(
 			":pseudo" => $pseudo,
 			":album"=>$album,

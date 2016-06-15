@@ -102,7 +102,6 @@ class AlbumController extends Controller {
 		if (!isset($_SESSION['pseudo'])){session_start();}
 		$this->view->note=$this->route["params"]["note"];
 		$this->view->album=$this->route["params"]["album"];
-		//echo $_SESSION['pseudo'];
 		$idAlbum=Album::getNom($this->view->album);
 		$db = Database::getInstance();
 		$sql = "select * from Note where pseudo=:pseudo and album=:album";
@@ -126,7 +125,6 @@ class AlbumController extends Controller {
 			":pseudo"=>$_SESSION['pseudo'],
 			":album"=>$idAlbum->idAlbum));	
 		}
-		//Album::noteGeneral($idAlbum);
 		$this->view->display();
 		return $stmt->fetch();
 	}
