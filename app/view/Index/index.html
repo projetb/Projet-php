@@ -36,9 +36,9 @@
 		</div>
 		<p class="lead">Bienvenue sur votre application de gestion de vos musiques.
 		</p>
+				<?php if (isset($_SESSION['pseudo'])){ ?>
 			<h2> Actualité: </h2>
 		<table class="table table-stripped">
-		<?php if (isset($_SESSION['pseudo'])){ ?>
 		<?php
     if(isset($_COOKIE["last_visit"]))
     {
